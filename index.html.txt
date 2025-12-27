@@ -4,21 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Operation Safe Internet: A Cyber Training Course for Kids</title>
-  <!-- Google Font: Comic Neue (fun and child-friendly) -->
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Google Font: Poppins (kid-friendly, clean) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#f7fbff;--card:#ffffff;--accent:#3b82f6;--muted:#6b7280}
-    body{font-family:'Comic Neue', cursive, Arial, sans-serif; background:var(--bg); margin:0; color:#0f172a}
+    /* Updated font style to Poppins */
+    body{font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); margin:0; color:#0f172a}
     header{background:linear-gradient(90deg,#0ea5e9, #3b82f6); color:white; padding:32px 16px; text-align:center}
     .container{max-width:980px;margin:20px auto;padding:0 16px}
-    h1{margin:0;font-size:32px}
+    h1{margin:0;font-size:28px}
     .intro{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:12px}
     .intro p{margin:0; color:rgba(255,255,255,0.95)}
     .card{background:var(--card); border-radius:12px; box-shadow:0 6px 18px rgba(2,6,23,0.06); padding:18px; margin-bottom:16px}
+    .lesson{display:grid;grid-template-columns:1fr 180px;gap:12px;align-items:start}
+    .lesson h2{margin-top:0}
+    .emoji{font-size:48px;text-align:center}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:white;text-decoration:none;font-weight:600}
+    .activities{display:flex;gap:8px;flex-wrap:wrap}
+    .quiz-option{display:block;padding:10px;border-radius:8px;border:1px solid #e6f0ff;margin-bottom:8px;cursor:pointer}
+    .quiz-option.correct{border-color:#16a34a;background:rgba(16,185,129,0.06)}
+    .quiz-option.wrong{border-color:#ef4444;background:rgba(239,68,68,0.06)}
+    footer{font-size:13px;color:var(--muted);text-align:center;padding:20px}
+
+    /* Responsive video container for embedded YouTube */
     .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px}
     .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:white;text-decoration:none;font-weight:600}
-    footer{font-size:14px;color:var(--muted);text-align:center;padding:20px}
+
+    @media(max-width:720px){.lesson{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -33,29 +45,227 @@
 
   <main class="container">
 
-    <!-- Video Section -->
-    <section id="video" class="card">
-      <h2>Learn by Watching: Internet Safety Tips for Kids</h2>
-      <div class="video-container">
-        <!-- Embedded YouTube video (Internet safety) -->
-        <iframe src="https://www.youtube.com/embed/qtJNRxMRuPE" 
-                title="Internet Safety Tips for Kids" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
-      </div>
-      <p style="margin-top:8px;font-size:15px;color:var(--muted)">
-        This video gives simple, easy-to-follow tips for kids about how to stay safe online — including reminders to protect personal info and be careful with strangers. It’s short and kid-friendly. :contentReference[oaicite:1]{index=1}
+    <section class="card">
+      <h2>Course Overview</h2>
+      <p>This mini-course has 4 short lessons with activities and a final quiz. It’s designed to be taught in class or at home — each lesson takes ~15–25 minutes.</p>
+      <ol>
+        <li>Lesson 1 — Be Safe Online: Private vs Public</li>
+        <li>Lesson 2 — Strong Passwords & Accounts</li>
+        <li>Lesson 3 — Recognize Scams & Phishing</li>
+        <li>Lesson 4 — Kindness, Privacy, and Digital Footprint</li>
+      </ol>
+      <p>Use the buttons below to jump to lessons or print a worksheet.</p>
+      <p>
+        <a href="#lesson1" class="btn">Start Lesson 1</a>
+        <a href="#quiz" class="btn" style="background:#10b981">Take the Quiz</a>
+        <button class="btn" id="printWorksheet" style="background:#ef4444">Print Worksheet</button>
       </p>
     </section>
 
-    <!-- (The rest of your course content goes here – unchanged) -->
-    <!-- ... your lessons, activities, worksheet, quiz, etc. ... -->
+    <!-- Embedded YouTube Video Section -->
+    <section id="video" class="card">
+      <h2>Watch: How Kids Can Be Safe Online</h2>
+      <p>Below you can embed a short YouTube video for the class. To use your chosen video, replace <code>VIDEO_ID_HERE</code> in the <code>src</code> attribute of the iframe with the YouTube video ID (the characters after <code>v=</code> in a normal YouTube URL).</p>
+      <div class="video-container">
+        <!-- Replace VIDEO_ID_HERE with a real YouTube video ID, e.g. dQw4w9WgXcQ -->
+        <iframe id="youtubeEmbed" src="https://www.youtube.com/embed/VIDEO_ID_HERE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p style="margin-top:8px;font-size:14px;color:var(--muted)">Tip: To get the video ID from a URL like <code>https://www.youtube.com/watch?v=abc123XYZ</code>, copy the part after <code>v=</code> (for this example it's <code>abc123XYZ</code>).</p>
+    </section>
+
+    <!-- Lesson 1 -->
+    <section id="lesson1" class="card">
+      <div class="lesson">
+        <div>
+          <h2>Lesson 1: Be Safe Online — Private vs Public</h2>
+          <p>Key idea: Some information is private (home address, passwords, family details). Some things can be public (favorite hobby, art you want to share). Always ask a parent or teacher before sharing private info.</p>
+
+          <h3>Activity — "Share or Not?" (Group)</h3>
+          <p>Read these items out loud. Students vote: "Share" or "Not Share".</p>
+          <ul class="activities">
+            <li class="card">Your full name — <strong>Not Share</strong></li>
+            <li class="card">A photo of your artwork — <strong>Share</strong></li>
+            <li class="card">Your school bus route — <strong>Not Share</strong></li>
+            <li class="card">Your favorite book — <strong>Share</strong></li>
+          </ul>
+
+          <h3>Teacher tip</h3>
+          <p>Encourage discussion — there are edge cases (like sharing a photo with a parent only). Talk about privacy settings on apps they might use.</p>
+        </div>
+        <div class="emoji">🔒</div>
+      </div>
+    </section>
+
+    <!-- Lesson 2 -->
+    <section id="lesson2" class="card">
+      <div class="lesson">
+        <div>
+          <h2>Lesson 2: Strong Passwords & Accounts</h2>
+          <p>Key idea: A strong password is long, unique, and hard to guess. Use a passphrase — a short sentence or four random words — and never share passwords.</p>
+
+          <h3>Activity — Password Game (Individual)</h3>
+          <ol>
+            <li>Ask students to create a password made of 4 words (e.g., "blue taco piano rocket").</li>
+            <li>Show how adding a number and a symbol strengthens it (e.g., "BlueTaco!2025Rocket").</li>
+            <li>Discuss why not to reuse passwords for different sites.</li>
+          </ol>
+
+          <h3>Teacher tip</h3>
+          <p>Explain what two-factor authentication (2FA) is in simple terms: "a second secret code sent to your phone or an app".</p>
+        </div>
+        <div class="emoji">🔑</div>
+      </div>
+    </section>
+
+    <!-- Lesson 3 -->
+    <section id="lesson3" class="card">
+      <div class="lesson">
+        <div>
+          <h2>Lesson 3: Recognize Scams & Phishing</h2>
+          <p>Key idea: Scammers pretend to be someone they’re not to trick you into giving info or clicking bad links. Look for mistakes, urgent messages, and strange links.</p>
+
+          <h3>Activity — Spot the Phish (Pair)</h3>
+          <p>Show three short example messages (teacher-created). Students mark which one is a scam and explain why.</p>
+          <pre style="background:#f1f5f9;padding:8px;border-radius:8px">Example:
+"Hi Ana — click here to collect your prize: tinyurl[dot]xyz"  → Suspicious: unknown link + urgency
+"Reminder: school trip permission form due tomorrow" → Likely real if from teacher's email
+"We need your password to fix your account" → Scam: nobody should ask for your password
+</pre>
+
+          <h3>Teacher tip</h3>
+          <p>Teach students to hover over links (on a computer) to see where they lead, and to ask an adult if unsure.</p>
+        </div>
+        <div class="emoji">🕵️‍♀️</div>
+      </div>
+    </section>
+
+    <!-- Lesson 4 -->
+    <section id="lesson4" class="card">
+      <div class="lesson">
+        <div>
+          <h2>Lesson 4: Kindness & Your Digital Footprint</h2>
+          <p>Key idea: Everything you post leaves a trace. Be kind online and think: "Would I say this in front of my teacher or my grandma?"</p>
+
+          <h3>Activity — Role Play (Group)</h3>
+          <p>Students act out short scenarios: handling mean comments, reporting bullying, and praising others.</p>
+
+          <h3>Teacher tip</h3>
+          <p>Cover how to block and report and explain who to talk to if they feel unsafe.</p>
+        </div>
+        <div class="emoji">🌱</div>
+      </div>
+    </section>
+
+    <!-- Worksheet (hidden printable area) -->
+    <section id="worksheet" style="display:none">
+      <h2>Operation Safe Internet — Worksheet</h2>
+      <p>Name: ___________________  Date: _______________</p>
+      <h3>1) Circle the things you should NOT share:</h3>
+      <p>Home address — Password — Favorite game — School name</p>
+      <h3>2) Write a strong password (do NOT use a real one):</h3>
+      <p>______________________________________________</p>
+      <h3>3) What would you do if someone asked for your password?</h3>
+      <p>______________________________________________</p>
+    </section>
+
+    <!-- Quiz -->
+    <section id="quiz" class="card">
+      <h2>Final Quiz — Quick Check</h2>
+      <p>Choose the best answer. Click Submit when you're done.</p>
+
+      <div id="quizArea"></div>
+      <p><button class="btn" id="submitQuiz">Submit Answers</button> <span id="score" style="margin-left:12px;font-weight:700"></span></p>
+    </section>
+
+    <section class="card">
+      <h2>Extra Resources for Teachers</h2>
+      <ul>
+        <li>Use this page as a single-file lesson — open in any browser.</li>
+        <li>To host on GitHub: create a new repository and add this file as <code>index.html</code>. Then enable GitHub Pages in repository settings (use main branch) — the page will be live at <em>yourname.github.io/repo</em>.</li>
+        <li>To use in Google Sites: insert an "Embed" block and paste the URL if you host it somewhere public, or copy the lesson text into a Sites page and switch the text to "HTML" if you want to paste raw code.</li>
+      </ul>
+      <p>Permission: This course is free to reuse and adapt for classrooms. ❤️</p>
+    </section>
 
   </main>
 
   <footer>
     Operation Safe Internet — created for Grade 6 • Teach, play, and stay safe online.
   </footer>
+
+  <script>
+    // Quiz data
+    const quizData = [
+      { q: 'Which of these is private information you should NOT share?', options: ['Your favorite color','Your home address','The name of a cartoon you like'], a:1 },
+      { q: 'What makes a strong password?', options: ['Short word','Four random words/passphrase','Your pet\'s name'], a:1 },
+      { q: 'If you get an urgent message asking for your password, you should:', options: ['Reply with your password','Ask an adult and do not share your password','Click the link immediately'], a:1 },
+      { q: 'What should you do about mean comments online?', options: ['Respond with mean words','Block/report and tell an adult','Share them with friends to laugh'], a:1 }
+    ];
+
+    function buildQuiz(){
+      const area = document.getElementById('quizArea');
+      area.innerHTML = '';
+      quizData.forEach((item, idx)=>{
+        const qDiv = document.createElement('div');
+        qDiv.className = 'card';
+        const h = document.createElement('h3'); h.textContent = (idx+1) + '. ' + item.q; qDiv.appendChild(h);
+        item.options.forEach((opt,i)=>{
+          const label = document.createElement('label');
+          label.className = 'quiz-option';
+          label.setAttribute('role','button');
+          label.tabIndex = 0;
+          label.innerHTML = `<input type="radio" name="q${idx}" value="${i}" style="margin-right:8px"> ${opt}`;
+          qDiv.appendChild(label);
+        });
+        area.appendChild(qDiv);
+      });
+    }
+
+    function gradeQuiz(){
+      let score = 0;
+      quizData.forEach((item, idx)=>{
+        const selected = document.querySelector(`input[name=q${idx}]:checked`);
+        const labels = document.getElementsByName(`q${idx}`);
+        // mark answers visually
+        const optionLabels = Array.from(document.querySelectorAll(`#quizArea .card`))[idx].querySelectorAll('.quiz-option');
+        optionLabels.forEach((lab, i)=>{
+          lab.classList.remove('correct','wrong');
+          const input = lab.querySelector('input');
+          if(i === item.a){ lab.classList.add('correct'); }
+          if(input.checked && i !== item.a){ lab.classList.add('wrong'); }
+        });
+        if(selected && Number(selected.value) === item.a) score++;
+      });
+      document.getElementById('score').textContent = `Score: ${score} / ${quizData.length}`;
+    }
+
+    document.getElementById('submitQuiz').addEventListener('click', gradeQuiz);
+    document.getElementById('printWorksheet').addEventListener('click', ()=>{
+      const w = document.getElementById('worksheet').innerHTML;
+      const newWin = window.open('', '_blank');
+      newWin.document.write('<html><head><title>Worksheet</title></head><body>'+w+'</body></html>');
+      newWin.document.close();
+      newWin.print();
+    });
+
+    // allow clicking the whole label to select radio
+    document.addEventListener('click', e=>{
+      if(e.target.closest('.quiz-option')){
+        const lab = e.target.closest('.quiz-option');
+        const radio = lab.querySelector('input[type=radio]');
+        if(radio) radio.checked = true;
+      }
+    });
+
+    // build when loaded
+    buildQuiz();
+
+    // helper: replace the YouTube video by id (optional runtime change)
+    function setYouTubeVideo(videoId){
+      const iframe = document.getElementById('youtubeEmbed');
+      if(!iframe) return;
+      iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    }
+  </script>
 </body>
 </html>
