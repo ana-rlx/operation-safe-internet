@@ -32,6 +32,7 @@ body {
   font-size: 16px;
 }
 
+/* Overlay */
 body::before {
   content: "";
   position: fixed;
@@ -40,69 +41,139 @@ body::before {
   z-index: -1;
 }
 
-header { text-align: center; padding: 36px 16px 20px; }
-header h1 { font-family: 'Nunito', sans-serif; font-size: 42px; margin: 0; }
+/* Header */
+header {
+  text-align: center;
+  padding: 36px 16px 20px;
+}
+header h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+header .subtitle {
+  font-size: 18px;
+  color: var(--muted);
+}
+header .level {
+  font-weight: 600;
+  margin-top: 6px;
+}
 
-/* Navigation */
-.tab { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 12px; }
+/* Tabs */
+.tab {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: transparent;
+}
+
 .tab button {
-  background: white; border: 1px solid #cbd5e1; padding: 10px 18px;
-  border-radius: 999px; cursor: pointer; font-weight: 700; transition: 0.3s;
-}
-.tab button.active { background: var(--blue); color: white; border-color: var(--blue); }
-
-main { max-width: 1000px; margin: auto; padding: 0 16px 40px; }
-.tab-content { display: none; }
-.tab-content.active { display: block; animation: fadeIn 0.5s; }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-.card { background: var(--card); padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 20px; }
-
-/* Cyberbullying Workflow Visuals */
-.workflow-container { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
-.step {
-  width: 100%; max-width: 500px; padding: 20px; border-radius: 12px;
-  text-align: center; font-weight: 800; color: white; position: relative;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-.step-1 { background: #6366f1; }
-.step-2 { background: #f59e0b; }
-.step-3 { background: #ec4899; }
-.step-4 { background: #10b981; }
-.arrow { font-size: 24px; color: var(--muted); }
-
-/* Poster Styling */
-#safety-poster {
-  background: linear-gradient(to bottom right, #ffffff, #f0f9ff);
-  border: 10px solid var(--blue); padding: 40px; border-radius: 10px;
-  text-align: center; position: relative;
-}
-.poster-rule {
-  background: white; margin: 10px 0; padding: 15px; border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px;
-  font-weight: 700; font-size: 1.2em; border-left: 5px solid var(--teal);
+  background: white;
+  border: 1px solid #cbd5e1;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.3s ease;
 }
 
-/* Certificate Visuals */
-#cert-input-area { background: #e0f2fe; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 20px; }
+.tab button:hover { background: #e0f2fe; }
+.tab button.active {
+  background: var(--blue);
+  color: white;
+  border-color: var(--blue);
+}
+
+/* Content */
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 16px 40px;
+}
+
+.tab-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.tab-content.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card {
+  background: var(--card);
+  padding: 26px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  margin-top: 20px;
+}
+
+/* Quiz Styling */
+.quiz-question {
+  background: #f1f5f9;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+}
+.quiz-option {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1em;
+  transition: 0.2s;
+}
+.quiz-option:hover { background: #f8fafc; border-color: var(--blue); }
+.quiz-option.correct { background: #dcfce7 !important; border-color: var(--green) !important; color: var(--green); font-weight: bold; }
+.quiz-option.wrong { background: #fee2e2 !important; border-color: var(--red) !important; color: var(--red); }
+
+.feedback {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    display: none;
+    font-size: 0.9em;
+}
+
+/* Certificate Styling */
 #certificate {
-  display: none; border: 15px double var(--blue); padding: 50px;
-  text-align: center; background: white; border-radius: 5px; position: relative;
+    display: none;
+    margin-top: 40px;
+    background: white;
+    padding: 40px;
+    border: 15px double var(--blue);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
 }
-.cert-name { font-family: 'Dancing Script', cursive; font-size: 3.5em; color: var(--blue); margin: 20px 0; border-bottom: 2px solid #ddd; display: inline-block; min-width: 300px; }
+#certificate h2 { font-family: 'Nunito', sans-serif; color: var(--blue); font-size: 2.5em; margin: 0; }
+#certificate .cert-text { font-size: 1.2em; margin: 20px 0; }
+#certificate .student-name { font-family: 'Dancing Script', cursive; font-size: 3em; color: var(--teal); border-bottom: 2px solid #ccc; display: inline-block; min-width: 300px; }
+#certificate .seal { font-size: 4em; color: var(--yellow); margin: 20px 0; }
 
-/* About Me */
-.about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 30px; align-items: start; }
-.profile-img { width: 100%; border-radius: 20px; border: 5px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+/* Lesson Graphics */
+.lesson-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.lesson-box { padding: 20px; border-radius: 12px; border: 2px solid #e2e8f0; }
 
-@media print {
-  .tab, header, .quiz-question, button, .subtitle { display: none !important; }
-  #certificate, #safety-poster { display: block !important; border: none !important; width: 100%; }
-  body { background: white; }
+@media (max-width: 768px) {
+    #certificate { padding: 20px; border-width: 8px; }
+    #certificate h2 { font-size: 1.8em; }
 }
-
-@media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 
@@ -110,15 +181,18 @@ main { max-width: 1000px; margin: auto; padding: 0 16px 40px; }
 
 <header>
   <h1>🛡️ Operation Safe Internet</h1>
-  <div class="subtitle">Empowering Digital Citizens for a Safer Tomorrow</div>
+  <div class="subtitle">A beginner-friendly MOOC on cybersecurity awareness</div>
+  <div class="level">Level: Primary Grade 6</div>
 </header>
 
 <div class="tab">
   <button class="tablinks active" onclick="openTab(event,'intro')">Introduction</button>
   <button class="tablinks" onclick="openTab(event,'cyber')">What is Cybersecurity?</button>
+  <button class="tablinks" onclick="openTab(event,'videos')">Videos</button>
   <button class="tablinks" onclick="openTab(event,'quiz')">Scenario Quiz</button>
   <button class="tablinks" onclick="openTab(event,'flow')">Cyberbullying Flow</button>
   <button class="tablinks" onclick="openTab(event,'poster')">Poster</button>
+  <button class="tablinks" onclick="openTab(event,'references')">References</button>
   <button class="tablinks" onclick="openTab(event,'about')">About Me</button>
 </div>
 
@@ -126,129 +200,134 @@ main { max-width: 1000px; margin: auto; padding: 0 16px 40px; }
 
 <div id="intro" class="tab-content active">
   <div class="card">
-    <h2>Welcome, Recruit!</h2>
-    <p>This activity is designed to introduce students to basic cybersecurity concepts and safe online behavior. Through guided explanations and interactive exercises, you will learn how to identify common online threats such as phishing, weak passwords, and unsafe websites.</p>
+    <h2><i class="fas fa-rocket"></i> Activity Overview</h2>
+    <p>This activity introduces students to basic cybersecurity concepts and safe online behavior. Students learn to identify threats like phishing and weak passwords through practical tasks and reflection.</p>
   </div>
 </div>
 
 <div id="cyber" class="tab-content">
   <div class="card">
-    <h2>The Basics</h2>
-    <p>Cybersecurity means protecting your digital life. Think of it like a lock on your front door, but for your phone and computer.</p>
-    
+    <h2><i class="fas fa-user-shield"></i> What Is Cybersecurity?</h2>
+    <p>Protecting your digital life is a superpower! Check out the tips below.</p>
+    <div class="lesson-grid">
+        <div class="lesson-box" style="background:#f0fdf4">
+            <h3><i class="fas fa-key"></i> Strong Passwords</h3>
+            <p>Combine letters, numbers, and symbols. Example: <strong>Sky!Blue77#</strong></p>
+        </div>
+        <div class="lesson-box" style="background:#fff1f2">
+            <h3><i class="fas fa-fish"></i> Phishing</h3>
+            <p>Watch out for strange emails with "Urgent" warnings or bad spelling!</p>
+        </div>
+    </div>
   </div>
 </div>
 
 <div id="quiz" class="tab-content">
   <div class="card">
-    <h2>Safety Challenge</h2>
-    <div class="quiz-question">
-        <p><strong>Scenario:</strong> You get a message saying "FREE ROBUX! CLICK HERE!" What is the safest move?</p>
-        <button class="quiz-option" onclick="handleQuiz(this, true)">Ignore it. It is likely a phishing scam.</button>
-        <button class="quiz-option" onclick="handleQuiz(this, false)">Click it! I need more Robux.</button>
-    </div>
-    
-    <div id="cert-input-area">
-        <p><strong>Great work! Type your name below to generate your certificate:</strong></p>
-        <input type="text" id="userName" placeholder="Enter Your Name" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 250px;">
-        <button onclick="generateCert()" style="padding: 10px 20px; background: var(--green); color: white; border: none; border-radius: 5px; cursor: pointer;">Get Certificate</button>
+    <h2><i class="fas fa-tasks"></i> Internet Safety Challenge</h2>
+    <p>Answer all 5 questions to earn your Certificate!</p>
+
+    <div id="quizArea">
+        <div class="quiz-question" id="Q1-box">
+            <strong>1. A popup says your computer has a virus and you must click to "Clean Now." What do you do?</strong>
+            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q1')">Click it immediately to save the computer.</button>
+            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q1')">Close the window. It's likely a fake alert (Scareware).</button>
+            <div id="feedback-Q1" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question" id="Q2-box">
+            <strong>2. You want to download a cool new game. What is the safest way?</strong>
+            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q2')">Ask an adult to help you download it from an official store.</button>
+            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q2')">Search for "Free Download" and click the first link you see.</button>
+            <div id="feedback-Q2" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question" id="Q3-box">
+            <strong>3. You are choosing a password for your email. Which is best?</strong>
+            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q3')">SoccerStar10 (Your hobby + jersey number)</button>
+            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q3')">GreeN#Tree$99 (Mix of characters and no personal info)</button>
+            <div id="feedback-Q3" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question" id="Q4-box">
+            <strong>4. Someone you don't know follows you on social media and asks for a selfie. What do you do?</strong>
+            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q4')">Don't send it. Block the user and tell a parent.</button>
+            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q4')">Send it, but make sure you look cool so they like you.</button>
+            <div id="feedback-Q4" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question" id="Q5-box">
+            <strong>5. Once you post a photo or comment online, who can see it?</strong>
+            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q5')">Only my friends, because my profile is private.</button>
+            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q5')">Potentially anyone. The internet is permanent!</button>
+            <div id="feedback-Q5" class="feedback"></div>
+        </div>
     </div>
 
     <div id="certificate">
-        <i class="fas fa-shield-alt" style="font-size: 50px; color: var(--yellow);"></i>
-        <h2>CERTIFICATE OF EXCELLENCE</h2>
-        <p>This is to certify that</p>
-        <div class="cert-name" id="display-name">Digital Explorer</div>
-        <p>has completed the <strong>Operation Safe Internet</strong> training<br>and is now a Certified Digital Safety Agent.</p>
-        <p><em>Awarded on: <span id="date"></span></em></p>
-        <button onclick="window.print()" style="margin-top:20px;">Print My Certificate</button>
+        <i class="fas fa-certificate seal"></i>
+        <h2>CERTIFICATE OF COMPLETION</h2>
+        <p class="cert-text">This certifies that</p>
+        <div class="student-name">Internet Safety Agent</div>
+        <p class="cert-text">has successfully completed the <strong>Operation Safe Internet</strong> training and is now a certified Digital Safety Expert!</p>
+        <p><em>Awarded on: <span id="cert-date"></span></em></p>
+        <button class="primary" onclick="window.print()" style="margin-top:20px; padding: 10px 20px; border-radius: 5px; background: var(--blue); color:white; border:none; cursor:pointer;">Print Certificate</button>
     </div>
   </div>
 </div>
 
-<div id="flow" class="tab-content">
-  <div class="card">
-    <h2 style="text-align: center;"><i class="fas fa-users-slash"></i> Cyberbullying Action Plan</h2>
-    <p style="text-align: center;">If someone is being mean online, follow these steps:</p>
-    
-    <div class="workflow-container">
-        <div class="step step-1"><i class="fas fa-hand-paper"></i> 1. STOP: Do not reply!</div>
-        <div class="arrow"><i class="fas fa-chevron-down"></i></div>
-        <div class="step step-2"><i class="fas fa-camera"></i> 2. SAVE: Take a screenshot of the message.</div>
-        <div class="arrow"><i class="fas fa-chevron-down"></i></div>
-        <div class="step step-3"><i class="fas fa-user-lock"></i> 3. BLOCK: Prevent them from contacting you again.</div>
-        <div class="arrow"><i class="fas fa-chevron-down"></i></div>
-        <div class="step step-4"><i class="fas fa-bullhorn"></i> 4. TELL: Talk to a parent or teacher immediately.</div>
-    </div>
-  </div>
-</div>
-
-<div id="poster" class="tab-content">
-  <div class="card">
-    <div id="safety-poster">
-        <h2 style="font-size: 2.5em; color: var(--blue); margin-bottom: 30px;">🛡️ MY INTERNET SAFETY RULES</h2>
-        <div class="poster-rule"><i class="fas fa-user-secret" style="color:#6366f1"></i> Keep your personal info private!</div>
-        <div class="poster-rule"><i class="fas fa-key" style="color:#f59e0b"></i> Use strong passwords for every account.</div>
-        <div class="poster-rule"><i class="fas fa-heart" style="color:#ec4899"></i> Be kind and respectful to everyone online.</div>
-        <div class="poster-rule"><i class="fas fa-mouse-pointer" style="color:#10b981"></i> Think twice before you click a link.</div>
-        <div class="poster-rule"><i class="fas fa-life-ring" style="color:#ef4444"></i> Always ask an adult if you feel unsafe.</div>
-        <p style="margin-top: 30px; font-weight: 800; color: var(--blue);">PROMISE TO STAY SAFE ONLINE!</p>
-    </div>
-    <div style="text-align: center; margin-top: 20px;">
-        <button onclick="window.print()" class="primary" style="padding: 15px 30px; font-size: 1.1em; background: var(--teal); color:white; border:none; border-radius:8px; cursor:pointer;">
-            <i class="fas fa-print"></i> Print This Poster for My Room
-        </button>
-    </div>
-  </div>
-</div>
-
-<div id="about" class="tab-content">
-  <div class="card">
-    <div class="about-grid">
-        <div>
-            <img src="75dcf362-4866-4fac-a144-59ec8cb56492.jpeg" alt="Ana" class="profile-img">
-        </div>
-        <div>
-            <h2>About Me: Ana</h2>
-            <p><strong>Language Assistant & Digital Educator</strong></p>
-            <p>Hello! I am Ana, a dedicated language assistant and technology enthusiast with a passion for bridging the gap between digital tools and effective learning. I believe that in today's world, being "tech-savvy" isn't enough—we must also be "tech-safe."</p>
-            <p>I created <strong>Operation Safe Internet</strong> as part of my MOOC project to help primary school students navigate the digital world with confidence and critical thinking. My goal is to make complex concepts like phishing and data privacy easy to understand through interactive storytelling and gamified learning.</p>
-            <p>When I'm not creating digital content, I enjoy exploring new languages, traveling, and finding creative ways to use technology in the classroom to inspire the next generation of digital citizens.</p>
-        </div>
-    </div>
-  </div>
-</div>
+<div id="videos" class="tab-content"><div class="card"><h2>Videos</h2></div></div>
+<div id="flow" class="tab-content"><div class="card"><h2>Flow</h2></div></div>
+<div id="poster" class="tab-content"><div class="card"><h2>Poster</h2></div></div>
+<div id="references" class="tab-content"><div class="card"><h2>References</h2></div></div>
+<div id="about" class="tab-content"><div class="card"><h2>About Me</h2></div></div>
 
 </main>
 
-<footer>
-  <p>© 2026 Operation Safe Internet • Built for Education</p>
-</footer>
-
 <script>
+let score = 0;
+const totalQuestions = 5;
+
 function openTab(evt, tabId) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tablinks').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll('.tablinks').forEach(btn => btn.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
   evt.currentTarget.classList.add('active');
 }
 
-function handleQuiz(btn, isCorrect) {
-    btn.style.background = isCorrect ? 'var(--green)' : 'var(--red)';
-    btn.style.color = 'white';
-    alert(isCorrect ? "Correct! You're ready for your certificate." : "Not quite! Think about the red flags of phishing.");
+function checkAnswer(btn, status, qId) {
+    const parent = btn.parentElement;
+    const feedback = document.getElementById('feedback-' + qId);
+    
+    if (parent.dataset.answered) return;
+    parent.dataset.answered = "true";
+
+    parent.querySelectorAll('.quiz-option').forEach(opt => opt.disabled = true);
+
+    if (status === 'correct') {
+        btn.classList.add('correct');
+        feedback.innerHTML = "✅ <strong>Correct!</strong> Well done.";
+        feedback.style.display = "block";
+        feedback.style.color = "var(--green)";
+        score++;
+    } else {
+        btn.classList.add('wrong');
+        feedback.innerHTML = "❌ <strong>Incorrect.</strong> Safety first!";
+        feedback.style.display = "block";
+        feedback.style.color = "var(--red)";
+    }
+
+    checkCompletion();
 }
 
-function generateCert() {
-    const name = document.getElementById('userName').value;
-    if(name.trim() === "") {
-        alert("Please enter your name first!");
-        return;
+function checkCompletion() {
+    const answered = document.querySelectorAll('[data-answered="true"]').length;
+    if (answered === totalQuestions) {
+        document.getElementById('certificate').style.display = "block";
+        document.getElementById('cert-date').innerText = new Date().toLocaleDateString();
+        // Scroll to certificate
+        document.getElementById('certificate').scrollIntoView({ behavior: 'smooth' });
     }
-    document.getElementById('display-name').innerText = name;
-    document.getElementById('date').innerText = new Date().toLocaleDateString();
-    document.getElementById('certificate').style.display = "block";
-    document.getElementById('certificate').scrollIntoView({behavior: 'smooth'});
 }
 </script>
 
