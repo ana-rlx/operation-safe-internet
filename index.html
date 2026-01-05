@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Operation Safe Internet</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Open+Sans:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -14,7 +13,7 @@
   --teal: #0f766e;
   --yellow: #facc15;
   --green: #15803d;
-  --red: #dc2626;
+  --red: #b91c1c;
   --bg: #f8fafc;
   --card: #ffffff;
   --text: #0f172a;
@@ -51,14 +50,6 @@ header h1 {
   font-size: 42px;
   margin-bottom: 8px;
 }
-header .subtitle {
-  font-size: 18px;
-  color: var(--muted);
-}
-header .level {
-  font-weight: 600;
-  margin-top: 6px;
-}
 
 /* Tabs */
 .tab {
@@ -67,7 +58,6 @@ header .level {
   flex-wrap: wrap;
   gap: 8px;
   padding: 12px;
-  background: transparent;
 }
 
 .tab button {
@@ -76,12 +66,11 @@ header .level {
   padding: 10px 18px;
   border-radius: 999px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
-.tab button:hover { background: #e0f2fe; }
 .tab button.active {
   background: var(--blue);
   color: white;
@@ -90,90 +79,70 @@ header .level {
 
 /* Content */
 main {
-  max-width: 1000px;
+  max-width: 900px;
   margin: auto;
   padding: 0 16px 40px;
 }
 
 .tab-content {
   display: none;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .tab-content.active {
   display: block;
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .card {
   background: var(--card);
-  padding: 26px;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   margin-top: 20px;
 }
 
-/* Quiz Styling */
-.quiz-question {
-  background: #f1f5f9;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  border: 1px solid #e2e8f0;
-}
-.quiz-option {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  background: white;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  margin-top: 8px;
-  cursor: pointer;
-  text-align: left;
-  font-family: inherit;
-  font-size: 1em;
-  transition: 0.2s;
-}
-.quiz-option:hover { background: #f8fafc; border-color: var(--blue); }
-.quiz-option.correct { background: #dcfce7 !important; border-color: var(--green) !important; color: var(--green); font-weight: bold; }
-.quiz-option.wrong { background: #fee2e2 !important; border-color: var(--red) !important; color: var(--red); }
+h2 { color: var(--blue); font-family: 'Nunito', sans-serif; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
 
-.feedback {
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 6px;
-    display: none;
-    font-size: 0.9em;
+/* Quiz Styles */
+.quiz-item { margin-bottom: 25px; padding: 15px; border-radius: 12px; background: #f8fafc; }
+.options button {
+  display: block; width: 100%; text-align: left; padding: 10px; margin: 5px 0;
+  border: 1px solid #ddd; border-radius: 8px; background: white; cursor: pointer;
+}
+.correct { background: #dcfce7 !important; border-color: #22c55e !important; }
+.wrong { background: #fee2e2 !important; border-color: #ef4444 !important; }
+
+/* Enhanced Flow */
+.flow-container { display: flex; flex-direction: column; align-items: center; }
+.flow-box {
+  background: white; border: 2px solid var(--teal); padding: 20px;
+  border-radius: 15px; width: 100%; max-width: 400px; text-align: center;
+  font-weight: 600; position: relative; box-shadow: 4px 4px 0px var(--teal);
+}
+.flow-arrow { font-size: 24px; color: var(--teal); margin: 10px 0; }
+
+/* Poster Visuals */
+.poster-preview {
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+  border: 4px dashed var(--blue); padding: 40px; border-radius: 20px; text-align: center;
+}
+.poster-rule { font-size: 20px; font-weight: 800; color: var(--blue); margin: 15px 0; list-style: none; }
+
+/* Print Option */
+@media print {
+  body * { visibility: hidden; }
+  #printable-poster, #printable-poster * { visibility: visible; }
+  #printable-poster { position: absolute; left: 0; top: 0; width: 100%; }
 }
 
-/* Certificate Styling */
-#certificate {
-    display: none;
-    margin-top: 40px;
-    background: white;
-    padding: 40px;
-    border: 15px double var(--blue);
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
+.btn-print {
+  background: var(--green); color: white; border: none; padding: 12px 24px;
+  border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px;
 }
-#certificate h2 { font-family: 'Nunito', sans-serif; color: var(--blue); font-size: 2.5em; margin: 0; }
-#certificate .cert-text { font-size: 1.2em; margin: 20px 0; }
-#certificate .student-name { font-family: 'Dancing Script', cursive; font-size: 3em; color: var(--teal); border-bottom: 2px solid #ccc; display: inline-block; min-width: 300px; }
-#certificate .seal { font-size: 4em; color: var(--yellow); margin: 20px 0; }
 
-/* Lesson Graphics */
-.lesson-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.lesson-box { padding: 20px; border-radius: 12px; border: 2px solid #e2e8f0; }
+/* Video Wrapper */
+.video-container { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 20px; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; }
 
-@media (max-width: 768px) {
-    #certificate { padding: 20px; border-width: 8px; }
-    #certificate h2 { font-size: 1.8em; }
-}
 </style>
 </head>
 
@@ -181,153 +150,191 @@ main {
 
 <header>
   <h1>🛡️ Operation Safe Internet</h1>
-  <div class="subtitle">A beginner-friendly MOOC on cybersecurity awareness</div>
-  <div class="level">Level: Primary Grade 6</div>
+  <p>Primary Grade 6 Cybersecurity MOOC</p>
 </header>
 
 <div class="tab">
   <button class="tablinks active" onclick="openTab(event,'intro')">Introduction</button>
-  <button class="tablinks" onclick="openTab(event,'cyber')">What is Cybersecurity?</button>
+  <button class="tablinks" onclick="openTab(event,'concepts')">Key Concepts</button>
   <button class="tablinks" onclick="openTab(event,'videos')">Videos</button>
   <button class="tablinks" onclick="openTab(event,'quiz')">Scenario Quiz</button>
   <button class="tablinks" onclick="openTab(event,'flow')">Cyberbullying Flow</button>
   <button class="tablinks" onclick="openTab(event,'poster')">Poster</button>
   <button class="tablinks" onclick="openTab(event,'references')">References</button>
-  <button class="tablinks" onclick="openTab(event,'about')">About Me</button>
 </div>
 
 <main>
 
 <div id="intro" class="tab-content active">
   <div class="card">
-    <h2><i class="fas fa-rocket"></i> Activity Overview</h2>
-    <p>This activity introduces students to basic cybersecurity concepts and safe online behavior. Students learn to identify threats like phishing and weak passwords through practical tasks and reflection.</p>
+    <h2>Introduction</h2>
+    <p>Welcome to Operation Safe Internet. This course is designed to help you navigate the digital world safely, protect your identity, and be a kind digital citizen.</p>
   </div>
 </div>
 
-<div id="cyber" class="tab-content">
+<div id="concepts" class="tab-content">
   <div class="card">
-    <h2><i class="fas fa-user-shield"></i> What Is Cybersecurity?</h2>
-    <p>Protecting your digital life is a superpower! Check out the tips below.</p>
-    <div class="lesson-grid">
-        <div class="lesson-box" style="background:#f0fdf4">
-            <h3><i class="fas fa-key"></i> Strong Passwords</h3>
-            <p>Combine letters, numbers, and symbols. Example: <strong>Sky!Blue77#</strong></p>
-        </div>
-        <div class="lesson-box" style="background:#fff1f2">
-            <h3><i class="fas fa-fish"></i> Phishing</h3>
-            <p>Watch out for strange emails with "Urgent" warnings or bad spelling!</p>
-        </div>
+    <h2>Cybersecurity Essentials</h2>
+    <p><strong>Cybersecurity</strong> is the practice of protecting systems, networks, and programs from digital attacks.</p>
+    <ul>
+        <li><strong>Strong Passwords:</strong> Use symbols, numbers, and mixed cases.</li>
+        <li><strong>Digital Footprint:</strong> What you post stays online forever.</li>
+        <li><strong>Phishing:</strong> Fake emails trying to steal your data.</li>
+    </ul>
+    
+  </div>
+</div>
+
+<div id="videos" class="tab-content">
+  <div class="card">
+    <h2>Learning Videos</h2>
+    <div class="video-container">
+      <iframe data-src="https://www.youtube.com/embed/qtJNRxMRuPE" loading="lazy"></iframe>
+    </div>
+    <div class="video-container">
+      <iframe data-src="https://www.youtube.com/embed/JkkTN0pQ_Ug" loading="lazy"></iframe>
     </div>
   </div>
 </div>
 
 <div id="quiz" class="tab-content">
   <div class="card">
-    <h2><i class="fas fa-tasks"></i> Internet Safety Challenge</h2>
-    <p>Answer all 5 questions to earn your Certificate!</p>
-
-    <div id="quizArea">
-        <div class="quiz-question" id="Q1-box">
-            <strong>1. A popup says your computer has a virus and you must click to "Clean Now." What do you do?</strong>
-            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q1')">Click it immediately to save the computer.</button>
-            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q1')">Close the window. It's likely a fake alert (Scareware).</button>
-            <div id="feedback-Q1" class="feedback"></div>
+    <h2>Scenario Quiz</h2>
+    <p>Choose the best answer for each situation:</p>
+    
+    <div id="quiz-container">
+      <div class="quiz-item">
+        <p><strong>1. You receive an email saying you won a free iPhone, but you need to click a link to give your address. What do you do?</strong></p>
+        <div class="options">
+          <button onclick="checkAnswer(this, false)">Click it immediately!</button>
+          <button onclick="checkAnswer(this, true)">Delete it. It's likely a phishing scam.</button>
         </div>
-
-        <div class="quiz-question" id="Q2-box">
-            <strong>2. You want to download a cool new game. What is the safest way?</strong>
-            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q2')">Ask an adult to help you download it from an official store.</button>
-            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q2')">Search for "Free Download" and click the first link you see.</button>
-            <div id="feedback-Q2" class="feedback"></div>
+      </div>
+      
+      <div class="quiz-item">
+        <p><strong>2. Your best friend asks for your game password so they can help you level up. What do you do?</strong></p>
+        <div class="options">
+          <button onclick="checkAnswer(this, true)">Refuse politely. Never share passwords.</button>
+          <button onclick="checkAnswer(this, false)">Give it to them; you trust them.</button>
         </div>
+      </div>
 
-        <div class="quiz-question" id="Q3-box">
-            <strong>3. You are choosing a password for your email. Which is best?</strong>
-            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q3')">SoccerStar10 (Your hobby + jersey number)</button>
-            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q3')">GreeN#Tree$99 (Mix of characters and no personal info)</button>
-            <div id="feedback-Q3" class="feedback"></div>
+      <div class="quiz-item">
+        <p><strong>3. You see someone being mean to your classmate in a group chat. What is the best action?</strong></p>
+        <div class="options">
+          <button onclick="checkAnswer(this, false)">Join in so you don't get bullied too.</button>
+          <button onclick="checkAnswer(this, true)">Don't join in, save a screenshot, and tell an adult.</button>
         </div>
+      </div>
 
-        <div class="quiz-question" id="Q4-box">
-            <strong>4. Someone you don't know follows you on social media and asks for a selfie. What do you do?</strong>
-            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q4')">Don't send it. Block the user and tell a parent.</button>
-            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q4')">Send it, but make sure you look cool so they like you.</button>
-            <div id="feedback-Q4" class="feedback"></div>
+      <div class="quiz-item">
+        <p><strong>4. A stranger in an online game asks what school you go to. What do you say?</strong></p>
+        <div class="options">
+          <button onclick="checkAnswer(this, true)">Don't tell them. That's private information.</button>
+          <button onclick="checkAnswer(this, false)">Tell them the name but not the address.</button>
         </div>
+      </div>
 
-        <div class="quiz-question" id="Q5-box">
-            <strong>5. Once you post a photo or comment online, who can see it?</strong>
-            <button class="quiz-option" onclick="checkAnswer(this, 'wrong', 'Q5')">Only my friends, because my profile is private.</button>
-            <button class="quiz-option" onclick="checkAnswer(this, 'correct', 'Q5')">Potentially anyone. The internet is permanent!</button>
-            <div id="feedback-Q5" class="feedback"></div>
+      <div class="quiz-item">
+        <p><strong>5. You want to download a "free" version of a popular game from a random website. What should you do?</strong></p>
+        <div class="options">
+          <button onclick="checkAnswer(this, false)">Download it; it saves money!</button>
+          <button onclick="checkAnswer(this, true)">Stop. It could contain a virus or malware.</button>
         </div>
-    </div>
-
-    <div id="certificate">
-        <i class="fas fa-certificate seal"></i>
-        <h2>CERTIFICATE OF COMPLETION</h2>
-        <p class="cert-text">This certifies that</p>
-        <div class="student-name">Internet Safety Agent</div>
-        <p class="cert-text">has successfully completed the <strong>Operation Safe Internet</strong> training and is now a certified Digital Safety Expert!</p>
-        <p><em>Awarded on: <span id="cert-date"></span></em></p>
-        <button class="primary" onclick="window.print()" style="margin-top:20px; padding: 10px 20px; border-radius: 5px; background: var(--blue); color:white; border:none; cursor:pointer;">Print Certificate</button>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="videos" class="tab-content"><div class="card"><h2>Videos</h2></div></div>
-<div id="flow" class="tab-content"><div class="card"><h2>Flow</h2></div></div>
-<div id="poster" class="tab-content"><div class="card"><h2>Poster</h2></div></div>
-<div id="references" class="tab-content"><div class="card"><h2>References</h2></div></div>
-<div id="about" class="tab-content"><div class="card"><h2>About Me</h2></div></div>
+<div id="flow" class="tab-content">
+  <div class="card">
+    <h2>What to do if you are Bullied Online</h2>
+    <div class="flow-container">
+      <div class="flow-box">🚫 1. STOP: Do not reply to the bully.</div>
+      <div class="flow-arrow">⬇</div>
+      <div class="flow-box">📸 2. SAVE: Take a screenshot for evidence.</div>
+      <div class="flow-arrow">⬇</div>
+      <div class="flow-box">🔒 3. BLOCK: Use the block feature immediately.</div>
+      <div class="flow-arrow">⬇</div>
+      <div class="flow-box" style="border-color: var(--green); background: #f0fdf4;">🗣️ 4. TELL: Talk to a parent or teacher.</div>
+    </div>
+  </div>
+</div>
+
+<div id="poster" class="tab-content">
+  <div class="card">
+    <h2>Internet Safety Poster</h2>
+    <div id="printable-poster" class="poster-preview">
+      <h1 style="color: var(--blue);">🖐️ THE 5 RULES OF SAFETY</h1>
+      <li class="poster-rule">1. PROTECT your personal info.</li>
+      <li class="poster-rule">2. CREATE strong, secret passwords.</li>
+      <li class="poster-rule">3. RESPECT others in every chat.</li>
+      <li class="poster-rule">4. THINK before you click or post.</li>
+      <li class="poster-rule">5. ASK an adult if you feel unsure.</li>
+    </div>
+    <center><button class="btn-print" onclick="window.print()">🖨️ Print My Safety Poster</button></center>
+  </div>
+</div>
+
+<div id="references" class="tab-content">
+  <div class="card">
+    <h2>Sources & Video Links</h2>
+    <p>All educational materials are sourced from reputable cybersecurity educators:</p>
+    <ul>
+      <li>
+        <strong>Online Safety Basics:</strong> 
+        <a href="https://www.youtube.com/watch?v=qtJNRxMRuPE" target="_blank">https://www.youtube.com/watch?v=qtJNRxMRuPE</a>
+        <br><small>Source: GCFLearnFree.org - Cybersecurity Education Series</small>
+      </li>
+      <br>
+      <li>
+        <strong>Cyberbullying & Fake News:</strong> 
+        <a href="https://www.youtube.com/watch?v=JkkTN0pQ_Ug" target="_blank">https://www.youtube.com/watch?v=JkkTN0pQ_Ug</a>
+        <br><small>Source: Amaze.org - Digital Citizenship for Students</small>
+      </li>
+    </ul>
+  </div>
+</div>
 
 </main>
 
+<footer>
+  © 2026 Operation Safe Internet • For Educational Purposes
+</footer>
+
 <script>
-let score = 0;
-const totalQuestions = 5;
-
 function openTab(evt, tabId) {
-  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-  document.querySelectorAll('.tablinks').forEach(btn => btn.classList.remove('active'));
-  document.getElementById(tabId).classList.add('active');
-  evt.currentTarget.classList.add('active');
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tab-content");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].classList.remove("active");
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].classList.remove("active");
+  }
+  document.getElementById(tabId).classList.add("active");
+  evt.currentTarget.classList.add("active");
+
+  // Lazy load video src
+  if (tabId === 'videos') {
+    const frames = document.querySelectorAll('iframe[data-src]');
+    frames.forEach(f => { if(!f.src) f.src = f.getAttribute('data-src'); });
+  }
 }
 
-function checkAnswer(btn, status, qId) {
-    const parent = btn.parentElement;
-    const feedback = document.getElementById('feedback-' + qId);
-    
-    if (parent.dataset.answered) return;
-    parent.dataset.answered = "true";
-
-    parent.querySelectorAll('.quiz-option').forEach(opt => opt.disabled = true);
-
-    if (status === 'correct') {
-        btn.classList.add('correct');
-        feedback.innerHTML = "✅ <strong>Correct!</strong> Well done.";
-        feedback.style.display = "block";
-        feedback.style.color = "var(--green)";
-        score++;
-    } else {
-        btn.classList.add('wrong');
-        feedback.innerHTML = "❌ <strong>Incorrect.</strong> Safety first!";
-        feedback.style.display = "block";
-        feedback.style.color = "var(--red)";
-    }
-
-    checkCompletion();
-}
-
-function checkCompletion() {
-    const answered = document.querySelectorAll('[data-answered="true"]').length;
-    if (answered === totalQuestions) {
-        document.getElementById('certificate').style.display = "block";
-        document.getElementById('cert-date').innerText = new Date().toLocaleDateString();
-        // Scroll to certificate
-        document.getElementById('certificate').scrollIntoView({ behavior: 'smooth' });
-    }
+function checkAnswer(btn, isCorrect) {
+  const parent = btn.parentElement;
+  const buttons = parent.querySelectorAll('button');
+  buttons.forEach(b => b.disabled = true);
+  
+  if (isCorrect) {
+    btn.classList.add('correct');
+    btn.innerHTML += " ✅";
+  } else {
+    btn.classList.add('wrong');
+    btn.innerHTML += " ❌";
+  }
 }
 </script>
 
