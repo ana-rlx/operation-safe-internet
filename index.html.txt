@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Operation Safe Internet</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Open+Sans:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 <style>
 :root {
@@ -14,395 +14,243 @@
   --teal: #0f766e;
   --yellow: #facc15;
   --green: #15803d;
-  --bg: #0f172a;
+  --red: #dc2626;
+  --bg: #f8fafc;
   --card: #ffffff;
-  --text: #f8fafc;
-  --muted: #94a3b8;
+  --text: #0f172a;
+  --muted: #475569;
 }
 
-/* Reset & basic */
-* { box-sizing: border-box; margin:0; padding:0; }
+/* Base */
+* { box-sizing: border-box; }
 body {
+  margin: 0;
   font-family: 'Open Sans', Arial, sans-serif;
+  background: url("stockvault-cyber-security-concept174251.jpg") no-repeat center center fixed;
+  background-size: cover;
   color: var(--text);
   font-size: 16px;
-  line-height: 1.6;
-  min-height: 100vh;
-  background: var(--bg);
-  overflow-x: hidden;
-  position: relative;
 }
 
-/* Cyber background canvas */
-#cyberCanvas {
+body::before {
+  content: "";
   position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  background: rgba(248,250,252,0.94);
   z-index: -1;
-  background: var(--bg);
 }
 
-/* Header */
-header {
-  text-align: center;
-  padding: 40px 20px 20px 20px;
-  z-index: 1;
-  position: relative;
-}
-header h1 {
-  font-family: 'Nunito', sans-serif;
-  font-size: 40px;
-  color: var(--yellow);
-  margin-bottom: 12px;
-  text-shadow: 0 0 10px #facc15, 0 0 20px #facc15;
-}
-header p {
-  font-size: 20px;
-  color: var(--text);
-}
+header { text-align: center; padding: 36px 16px 20px; }
+header h1 { font-family: 'Nunito', sans-serif; font-size: 42px; margin: 0; }
 
-/* Tabs */
-.tab {
-  overflow: hidden;
-  background: var(--blue);
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
-}
+/* Navigation */
+.tab { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 12px; }
 .tab button {
-  background: var(--blue);
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 12px 20px;
-  transition: 0.3s, box-shadow 1s ease-in-out;
-  font-size: 16px;
-  color: white;
-  font-weight: 700;
-  margin: 4px;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0,255,255,0.2);
-  animation: glowPulse 2.5s infinite alternate;
+  background: white; border: 1px solid #cbd5e1; padding: 10px 18px;
+  border-radius: 999px; cursor: pointer; font-weight: 700; transition: 0.3s;
 }
-.tab button:hover { 
-  background: var(--teal); 
-  box-shadow: 0 0 12px rgba(0,255,255,0.6);
+.tab button.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+main { max-width: 1000px; margin: auto; padding: 0 16px 40px; }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.5s; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.card { background: var(--card); padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 20px; }
+
+/* Cyberbullying Workflow Visuals */
+.workflow-container { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
+.step {
+  width: 100%; max-width: 500px; padding: 20px; border-radius: 12px;
+  text-align: center; font-weight: 800; color: white; position: relative;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-.tab button.active { 
-  background: var(--green); 
-  box-shadow: 0 0 15px rgba(21,128,61,0.7);
+.step-1 { background: #6366f1; }
+.step-2 { background: #f59e0b; }
+.step-3 { background: #ec4899; }
+.step-4 { background: #10b981; }
+.arrow { font-size: 24px; color: var(--muted); }
+
+/* Poster Styling */
+#safety-poster {
+  background: linear-gradient(to bottom right, #ffffff, #f0f9ff);
+  border: 10px solid var(--blue); padding: 40px; border-radius: 10px;
+  text-align: center; position: relative;
+}
+.poster-rule {
+  background: white; margin: 10px 0; padding: 15px; border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px;
+  font-weight: 700; font-size: 1.2em; border-left: 5px solid var(--teal);
 }
 
-/* Keyframes for glowing pulse */
-@keyframes glowPulse {
-  0% { box-shadow: 0 0 6px rgba(0,255,255,0.2); }
-  50% { box-shadow: 0 0 12px rgba(0,255,255,0.4); }
-  100% { box-shadow: 0 0 6px rgba(0,255,255,0.2); }
+/* Certificate Visuals */
+#cert-input-area { background: #e0f2fe; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 20px; }
+#certificate {
+  display: none; border: 15px double var(--blue); padding: 50px;
+  text-align: center; background: white; border-radius: 5px; position: relative;
+}
+.cert-name { font-family: 'Dancing Script', cursive; font-size: 3.5em; color: var(--blue); margin: 20px 0; border-bottom: 2px solid #ddd; display: inline-block; min-width: 300px; }
+
+/* About Me */
+.about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 30px; align-items: start; }
+.profile-img { width: 100%; border-radius: 20px; border: 5px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+@media print {
+  .tab, header, .quiz-question, button, .subtitle { display: none !important; }
+  #certificate, #safety-poster { display: block !important; border: none !important; width: 100%; }
+  body { background: white; }
 }
 
-/* Tab content */
-.tab-content { display: none; padding: 20px 0; position: relative; z-index: 1; }
-.tab-content.card {
-  background: var(--card);
-  color: #0f172a;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-  margin-top: 10px;
-}
-
-/* Headings */
-h2 { color: var(--blue); }
-h3 { color: var(--teal); }
-
-/* Highlights */
-.highlight {
-  background: #fefce8;
-  border-left: 6px solid var(--yellow);
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-/* Videos */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 12px;
-  margin-top: 12px;
-}
-.video-container iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* Flowchart */
-.flow-step {
-  background: #ecfeff;
-  border-left: 6px solid var(--teal);
-  padding: 14px;
-  margin: 10px auto;
-  border-radius: 10px;
-  max-width: 460px;
-  font-weight: 700;
-}
-.flow-arrow {
-  text-align: center;
-  font-size: 22px;
-  color: var(--muted);
-}
-.final-step {
-  background: #ecfdf5;
-  border-left: 6px solid var(--green);
-}
-
-/* Quiz */
-.quiz-question {
-  background: #f1f5f9;
-  padding: 14px;
-  border-radius: 10px;
-  margin-bottom: 14px;
-}
-.quiz-option {
-  display: block;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  margin-bottom: 8px;
-  cursor: pointer;
-}
-.quiz-option.correct { border-color: var(--green); background: rgba(21,128,61,0.1); }
-.quiz-option.wrong { border-color: #f59e0b; background: rgba(250,204,21,0.1); }
-
-/* Buttons with glow */
-button {
-  background: var(--blue);
-  color: #ffffff;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: 700;
-  margin-top: 8px;
-  box-shadow: 0 0 8px rgba(0,255,255,0.2);
-  animation: glowPulse 2.5s infinite alternate;
-}
-button:hover { box-shadow: 0 0 12px rgba(0,255,255,0.6); }
-
-/* About Me photo */
-.about-photo {
-  max-width: 200px;
-  border-radius: 12px;
-  display: block;
-  margin: auto;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  font-size: 14px;
-  color: var(--muted);
-  padding: 20px;
-}
-
-/* Poster */
-#posterPreview {
-  border:4px solid var(--teal);
-  padding:30px;
-  border-radius:16px;
-  max-width:700px;
-  margin:auto;
-  background:linear-gradient(135deg, #e0f7fa, #ffffff);
-}
-#posterPreview h3 {
-  text-align:center;
-  color:var(--blue);
-  font-size:32px;
-  margin-bottom:24px;
-}
-#posterPreview ol {
-  font-size:20px;
-  line-height:2;
-  padding-left:40px;
-  text-align:left;
-}
-#posterPreview li { margin-bottom:14px; }
-
+@media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
-<body>
 
-<canvas id="cyberCanvas"></canvas>
+<body>
 
 <header>
   <h1>🛡️ Operation Safe Internet</h1>
-  <p>A Cyber Training Course for Kids (Grade 6)</p>
+  <div class="subtitle">Empowering Digital Citizens for a Safer Tomorrow</div>
 </header>
 
 <div class="tab">
   <button class="tablinks active" onclick="openTab(event,'intro')">Introduction</button>
-  <button class="tablinks" onclick="openTab(event,'videos')">Videos</button>
-  <button class="tablinks" onclick="openTab(event,'cybersecurity')">Cybersecurity</button>
+  <button class="tablinks" onclick="openTab(event,'cyber')">What is Cybersecurity?</button>
   <button class="tablinks" onclick="openTab(event,'quiz')">Scenario Quiz</button>
   <button class="tablinks" onclick="openTab(event,'flow')">Cyberbullying Flow</button>
   <button class="tablinks" onclick="openTab(event,'poster')">Poster</button>
-  <button class="tablinks" onclick="openTab(event,'references')">References</button>
-  <button class="tablinks" onclick="openTab(event,'aboutme')">About Me</button>
+  <button class="tablinks" onclick="openTab(event,'about')">About Me</button>
 </div>
 
 <main>
-  <!-- All tab content goes here, including enhanced printable poster -->
+
+<div id="intro" class="tab-content active">
+  <div class="card">
+    <h2>Welcome, Recruit!</h2>
+    <p>This activity is designed to introduce students to basic cybersecurity concepts and safe online behavior. Through guided explanations and interactive exercises, you will learn how to identify common online threats such as phishing, weak passwords, and unsafe websites.</p>
+  </div>
+</div>
+
+<div id="cyber" class="tab-content">
+  <div class="card">
+    <h2>The Basics</h2>
+    <p>Cybersecurity means protecting your digital life. Think of it like a lock on your front door, but for your phone and computer.</p>
+    
+  </div>
+</div>
+
+<div id="quiz" class="tab-content">
+  <div class="card">
+    <h2>Safety Challenge</h2>
+    <div class="quiz-question">
+        <p><strong>Scenario:</strong> You get a message saying "FREE ROBUX! CLICK HERE!" What is the safest move?</p>
+        <button class="quiz-option" onclick="handleQuiz(this, true)">Ignore it. It is likely a phishing scam.</button>
+        <button class="quiz-option" onclick="handleQuiz(this, false)">Click it! I need more Robux.</button>
+    </div>
+    
+    <div id="cert-input-area">
+        <p><strong>Great work! Type your name below to generate your certificate:</strong></p>
+        <input type="text" id="userName" placeholder="Enter Your Name" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 250px;">
+        <button onclick="generateCert()" style="padding: 10px 20px; background: var(--green); color: white; border: none; border-radius: 5px; cursor: pointer;">Get Certificate</button>
+    </div>
+
+    <div id="certificate">
+        <i class="fas fa-shield-alt" style="font-size: 50px; color: var(--yellow);"></i>
+        <h2>CERTIFICATE OF EXCELLENCE</h2>
+        <p>This is to certify that</p>
+        <div class="cert-name" id="display-name">Digital Explorer</div>
+        <p>has completed the <strong>Operation Safe Internet</strong> training<br>and is now a Certified Digital Safety Agent.</p>
+        <p><em>Awarded on: <span id="date"></span></em></p>
+        <button onclick="window.print()" style="margin-top:20px;">Print My Certificate</button>
+    </div>
+  </div>
+</div>
+
+<div id="flow" class="tab-content">
+  <div class="card">
+    <h2 style="text-align: center;"><i class="fas fa-users-slash"></i> Cyberbullying Action Plan</h2>
+    <p style="text-align: center;">If someone is being mean online, follow these steps:</p>
+    
+    <div class="workflow-container">
+        <div class="step step-1"><i class="fas fa-hand-paper"></i> 1. STOP: Do not reply!</div>
+        <div class="arrow"><i class="fas fa-chevron-down"></i></div>
+        <div class="step step-2"><i class="fas fa-camera"></i> 2. SAVE: Take a screenshot of the message.</div>
+        <div class="arrow"><i class="fas fa-chevron-down"></i></div>
+        <div class="step step-3"><i class="fas fa-user-lock"></i> 3. BLOCK: Prevent them from contacting you again.</div>
+        <div class="arrow"><i class="fas fa-chevron-down"></i></div>
+        <div class="step step-4"><i class="fas fa-bullhorn"></i> 4. TELL: Talk to a parent or teacher immediately.</div>
+    </div>
+  </div>
+</div>
+
+<div id="poster" class="tab-content">
+  <div class="card">
+    <div id="safety-poster">
+        <h2 style="font-size: 2.5em; color: var(--blue); margin-bottom: 30px;">🛡️ MY INTERNET SAFETY RULES</h2>
+        <div class="poster-rule"><i class="fas fa-user-secret" style="color:#6366f1"></i> Keep your personal info private!</div>
+        <div class="poster-rule"><i class="fas fa-key" style="color:#f59e0b"></i> Use strong passwords for every account.</div>
+        <div class="poster-rule"><i class="fas fa-heart" style="color:#ec4899"></i> Be kind and respectful to everyone online.</div>
+        <div class="poster-rule"><i class="fas fa-mouse-pointer" style="color:#10b981"></i> Think twice before you click a link.</div>
+        <div class="poster-rule"><i class="fas fa-life-ring" style="color:#ef4444"></i> Always ask an adult if you feel unsafe.</div>
+        <p style="margin-top: 30px; font-weight: 800; color: var(--blue);">PROMISE TO STAY SAFE ONLINE!</p>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="window.print()" class="primary" style="padding: 15px 30px; font-size: 1.1em; background: var(--teal); color:white; border:none; border-radius:8px; cursor:pointer;">
+            <i class="fas fa-print"></i> Print This Poster for My Room
+        </button>
+    </div>
+  </div>
+</div>
+
+<div id="about" class="tab-content">
+  <div class="card">
+    <div class="about-grid">
+        <div>
+            <img src="75dcf362-4866-4fac-a144-59ec8cb56492.jpeg" alt="Ana" class="profile-img">
+        </div>
+        <div>
+            <h2>About Me: Ana</h2>
+            <p><strong>Language Assistant & Digital Educator</strong></p>
+            <p>Hello! I am Ana, a dedicated language assistant and technology enthusiast with a passion for bridging the gap between digital tools and effective learning. I believe that in today's world, being "tech-savvy" isn't enough—we must also be "tech-safe."</p>
+            <p>I created <strong>Operation Safe Internet</strong> as part of my MOOC project to help primary school students navigate the digital world with confidence and critical thinking. My goal is to make complex concepts like phishing and data privacy easy to understand through interactive storytelling and gamified learning.</p>
+            <p>When I'm not creating digital content, I enjoy exploring new languages, traveling, and finding creative ways to use technology in the classroom to inspire the next generation of digital citizens.</p>
+        </div>
+    </div>
+  </div>
+</div>
+
 </main>
 
 <footer>
-  © Operation Safe Internet • Educational Use
+  <p>© 2026 Operation Safe Internet • Built for Education</p>
 </footer>
 
 <script>
-// ----------------- Tabs -----------------
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tab-content");
-  for(i=0;i<tabcontent.length;i++){ tabcontent[i].style.display="none"; }
-  tablinks = document.getElementsByClassName("tablinks");
-  for(i=0;i<tablinks.length;i++){ tablinks[i].className = tablinks[i].className.replace(" active",""); }
-  document.getElementById(tabName).style.display="block";
-  evt.currentTarget.className += " active";
+function openTab(evt, tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tablinks').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  evt.currentTarget.classList.add('active');
 }
 
-// ----------------- Quiz -----------------
-const quizData = [
-  { q: 'Someone asks for your password. What do you do?', options: ['Give it','Say no and tell an adult','Ignore it'], a:1 },
-  { q: 'You see a mean comment online. What do you do?', options: ['Reply','Save & Report','Share with friends'], a:1 },
-  { q: 'You receive a suspicious link. Action?', options: ['Click it','Ask adult first','Forward to friends'], a:1 }
-];
-function buildQuiz(){
-  const area = document.getElementById('quizArea');
-  area.innerHTML='';
-  quizData.forEach((item, idx)=>{
-    const qDiv = document.createElement('div');
-    qDiv.className='quiz-question';
-    const h = document.createElement('strong'); h.textContent='Scenario '+(idx+1)+': '; qDiv.appendChild(h);
-    const p = document.createElement('span'); p.textContent=item.q; qDiv.appendChild(p);
-    item.options.forEach((opt,i)=>{
-      const label = document.createElement('label');
-      label.className='quiz-option';
-      label.innerHTML=`<input type="radio" name="q${idx}" value="${i}" style="margin-right:6px"> ${opt}`;
-      qDiv.appendChild(label);
-    });
-    area.appendChild(qDiv);
-  });
-}
-buildQuiz();
-function gradeQuiz(){
-  let score=0;
-  quizData.forEach((item, idx)=>{
-    const selected = document.querySelector(`input[name=q${idx}]:checked`);
-    const optionLabels = Array.from(document.querySelectorAll('#quizArea .quiz-question')[idx].querySelectorAll('.quiz-option'));
-    optionLabels.forEach((lab,i)=>{
-      lab.classList.remove('correct','wrong');
-      const input = lab.querySelector('input');
-      if(i===item.a){ lab.classList.add('correct'); }
-      if(input.checked && i!==item.a){ lab.classList.add('wrong'); }
-    });
-    if(selected && Number(selected.value)===item.a) score++;
-  });
-  document.getElementById('score').textContent=`Score: ${score} / ${quizData.length}`;
-}
-document.addEventListener('click', e=>{
-  if(e.target.closest('.quiz-option')){
-    const lab=e.target.closest('.quiz-option');
-    const radio=lab.querySelector('input[type=radio]');
-    if(radio) radio.checked=true;
-  }
-});
-
-// ----------------- Poster Print -----------------
-function printPoster() {
-  const posterContent = document.getElementById('posterPreview').innerHTML;
-  const printWindow = window.open('', '', 'height=800,width=800');
-  printWindow.document.write('<html><head><title>Print Poster</title><style>');
-  printWindow.document.write('body { font-family: Nunito, sans-serif; text-align:center; padding:40px; background:#0f172a; color:#f8fafc;}');
-  printWindow.document.write('#posterPreview { border:4px solid #0f766e; padding:30px; border-radius:16px; background:linear-gradient(135deg, #e0f7fa, #ffffff); }');
-  printWindow.document.write('h3 { color:#1e40af; font-size:32px; margin-bottom:24px; }');
-  printWindow.document.write('ol { font-size:22px; line-height:2.2; text-align:left; display:inline-block; padding-left:40px; }');
-  printWindow.document.write('li { margin-bottom:16px; }');
-  printWindow.document.write('</style></head><body>');
-  printWindow.document.write(posterContent);
-  printWindow.document.write('</body></html>');
-  printWindow.document.close();
-  printWindow.focus();
-  printWindow.print();
+function handleQuiz(btn, isCorrect) {
+    btn.style.background = isCorrect ? 'var(--green)' : 'var(--red)';
+    btn.style.color = 'white';
+    alert(isCorrect ? "Correct! You're ready for your certificate." : "Not quite! Think about the red flags of phishing.");
 }
 
-// ----------------- Cyber Background Animation -----------------
-const canvas = document.getElementById('cyberCanvas');
-const ctx = canvas.getContext('2d');
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
-let nodes = [];
-
-function Node(x, y, vx, vy, size) {
-  this.x = x;
-  this.y = y;
-  this.vx = vx;
-  this.vy = vy;
-  this.size = size;
-}
-Node.prototype.update = function() {
-  this.x += this.vx;
-  this.y += this.vy;
-  if(this.x<0 || this.x>width) this.vx*=-1;
-  if(this.y<0 || this.y>height) this.vy*=-1;
-};
-function initNodes(num) {
-  nodes = [];
-  for(let i=0;i<num;i++){
-    nodes.push(new Node(Math.random()*width, Math.random()*height, (Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5, 2+Math.random()*2));
-  }
-}
-function draw() {
-  ctx.clearRect(0,0,width,height);
-  ctx.fillStyle='rgba(0,255,255,0.7)';
-  for(let i=0;i<nodes.length;i++){
-    const n=nodes[i];
-    ctx.beginPath();
-    ctx.arc(n.x,n.y,n.size,0,Math.PI*2);
-    ctx.fill();
-  }
-  // Draw lines
-  ctx.strokeStyle='rgba(0,255,255,0.2)';
-  for(let i=0;i<nodes.length;i++){
-    for(let j=i+1;j<nodes.length;j++){
-      const dx = nodes[i].x - nodes[j].x;
-      const dy = nodes[i].y - nodes[j].y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      if(dist<120){
-        ctx.beginPath();
-        ctx.moveTo(nodes[i].x,nodes[i].y);
-        ctx.lineTo(nodes[j].x,nodes[j].y);
-        ctx.stroke();
-      }
+function generateCert() {
+    const name = document.getElementById('userName').value;
+    if(name.trim() === "") {
+        alert("Please enter your name first!");
+        return;
     }
-  }
-  nodes.forEach(n=>n.update());
-  requestAnimationFrame(draw);
+    document.getElementById('display-name').innerText = name;
+    document.getElementById('date').innerText = new Date().toLocaleDateString();
+    document.getElementById('certificate').style.display = "block";
+    document.getElementById('certificate').scrollIntoView({behavior: 'smooth'});
 }
-initNodes(80);
-draw();
-window.addEventListener('resize', ()=>{
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-  initNodes(80);
-});
 </script>
+
 </body>
 </html>
