@@ -1,353 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Operation Safe Internet
-Level: Primary Grade 6</title>
+  <meta charset="UTF-8">
+  <title>Operation: Safe Internet</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Google Font (Coursera / edX style) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --blue: #1e40af;
-  --teal: #0f766e;
-  --yellow: #facc15;
-  --green: #15803d;
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --text: #0f172a;
-  --muted: #334155;
-}
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
 
-* { box-sizing: border-box; }
-body {
-  font-family: 'Open Sans', Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.6;
-}
+    header {
+      background: #ffffff;
+      padding: 40px 20px 20px;
+      border-bottom: 1px solid #ddd;
+    }
 
-/* Tabs */
-.tab {
-  overflow: hidden;
-  background: var(--blue);
-}
-.tab button {
-  background: var(--blue);
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 12px 20px;
-  transition: 0.3s;
-  font-size: 16px;
-  color: white;
-  font-weight: 700;
-}
-.tab button:hover { background: var(--teal); }
-.tab button.active { background: var(--green); }
+    .main-title {
+      text-align: center;
+      font-size: 2.6em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #1f2937;
+    }
 
-/* Tab content */
-.tab-content { display: none; padding: 20px 0; }
-.tab-content.card {
-  background: var(--card);
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-  margin-top: 10px;
-}
+    .subtitle {
+      text-align: center;
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 30px;
+    }
 
-/* Headings */
-h1, h2, h3 { font-family: 'Nunito', sans-serif; }
-h1 { font-size: 32px; margin:0; }
-h2 { color: var(--blue); }
-h3 { color: var(--teal); }
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
+    }
 
-/* Highlights */
-.highlight {
-  background: #fefce8;
-  border-left: 6px solid var(--yellow);
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: 600;
-}
+    .tab {
+      padding: 14px 22px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #374151;
+    }
 
-/* Videos */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 12px;
-  margin-top: 12px;
-}
-.video-container iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
+    .tab:hover {
+      background: #e5e7eb;
+    }
 
-/* Flowchart */
-.flow-step {
-  background: #ecfeff;
-  border-left: 6px solid var(--teal);
-  padding: 14px;
-  margin: 10px auto;
-  border-radius: 10px;
-  max-width: 460px;
-  font-weight: 700;
-}
-.flow-arrow {
-  text-align: center;
-  font-size: 22px;
-  color: var(--muted);
-}
-.final-step {
-  background: #ecfdf5;
-  border-left: 6px solid var(--green);
-}
+    .tab.active {
+      border-bottom: 3px solid #2563eb;
+      color: #2563eb;
+    }
 
-/* Quiz */
-.quiz-question {
-  background: #f1f5f9;
-  padding: 14px;
-  border-radius: 10px;
-  margin-bottom: 14px;
-}
-.quiz-option {
-  display: block;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  margin-bottom: 8px;
-  cursor: pointer;
-}
-.quiz-option.correct { border-color: var(--green); background: rgba(21,128,61,0.1); }
-.quiz-option.wrong { border-color: #f59e0b; background: rgba(250,204,21,0.1); }
+    /* Content */
+    .content {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      display: none;
+      background: #ffffff;
+    }
 
-button {
-  background: var(--blue);
-  color: #ffffff;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: 700;
-  margin-top: 8px;
-}
-button:hover { background: #1e3a8a; }
+    .content.active {
+      display: block;
+    }
 
-.about-photo {
-  max-width: 200px;
-  border-radius: 12px;
-  display: block;
-  margin: auto;
-}
+    h2 {
+      color: #1f2937;
+      margin-top: 0;
+    }
 
-footer {
-  text-align: center;
-  font-size: 14px;
-  color: var(--muted);
-  padding: 20px;
-}
-</style>
+    /* Quiz */
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+
+    .quiz-option {
+      background: #e5e7eb;
+      padding: 10px;
+      margin: 8px 0;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .quiz-option:hover {
+      background: #d1d5db;
+    }
+
+    .correct {
+      background: #bbf7d0 !important;
+    }
+
+    .incorrect {
+      background: #fecaca !important;
+    }
+
+    /* Images */
+    .center-img {
+      display: block;
+      margin: 20px auto;
+      max-width: 300px;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
-  <h1>🛡️ Operation Safe Internet</h1>
-  <p>A Cyber Training Course for Kids</p>
+  <h1 class="main-title">Operation: Safe Internet</h1>
+  <p class="subtitle">
+    A beginner-friendly MOOC on cybersecurity awareness and safe online behavior
+  </p>
 </header>
 
-<div class="tab">
-  <button class="tablinks active" onclick="openTab(event,'intro')">Introduction</button>
-  <button class="tablinks" onclick="openTab(event,'videos')">Videos</button>
-  <button class="tablinks" onclick="openTab(event,'quiz')">Scenario Quiz</button>
-  <button class="tablinks" onclick="openTab(event,'flow')">Cyberbullying Flow</button>
-  <button class="tablinks" onclick="openTab(event,'poster')">Poster</button>
-  <button class="tablinks" onclick="openTab(event,'references')">References</button>
-  <button class="tablinks" onclick="openTab(event,'aboutme')">About Me</button>
+<!-- Navigation Tabs -->
+<div class="tabs">
+  <div class="tab active" onclick="openTab('intro')">Introduction</div>
+  <div class="tab" onclick="openTab('videos')">Videos</div>
+  <div class="tab" onclick="openTab('quiz')">Scenario Quiz</div>
+  <div class="tab" onclick="openTab('poster')">Poster</div>
+  <div class="tab" onclick="openTab('flowchart')">Flowchart</div>
+  <div class="tab" onclick="openTab('references')">References</div>
+  <div class="tab" onclick="openTab('about')">About Me</div>
 </div>
 
-<main>
-
-<!-- Introduction Tab -->
-<div id="intro" class="tab-content card" style="display:block;">
+<!-- INTRO -->
+<div id="intro" class="content active">
   <h2>Introduction</h2>
-  <p>This activity is designed to introduce students to basic cybersecurity concepts and safe online behavior. Through guided explanations, real-life examples, and interactive exercises, students learn how to identify common online threats such as phishing, weak passwords, and unsafe websites. The activity includes short discussions, practical demonstrations, and a hands-on task where students analyze online scenarios and decide whether they were safe or unsafe. As a final product submitted to the MOOC, students complete a short digital activity and reflect on what they learned about protecting their personal information online.</p>
+  <p>
+    This activity is designed to introduce students to basic cybersecurity concepts and safe online behavior.
+    Through guided explanations, real-life examples, and interactive exercises, students learn how to identify
+    common online threats such as phishing, weak passwords, and unsafe websites.
+  </p>
+
+  <p>
+    The activity includes short discussions, practical demonstrations, and a hands-on task where students analyze
+    online scenarios and decide whether they were safe or unsafe. As a final product submitted to the MOOC,
+    students complete a short digital activity and reflect on what they learned about protecting their personal
+    information online.
+  </p>
 
   <h3>Objectives</h3>
   <ul>
-    <li>To raise awareness of basic cybersecurity concepts and online safety.</li>
-    <li>To help students recognize common digital threats such as phishing emails and insecure passwords.</li>
-    <li>To encourage responsible and safe use of the internet and digital devices.</li>
-    <li>To develop critical thinking skills when evaluating online content and interactions.</li>
+    <li>Raise awareness of basic cybersecurity concepts and online safety</li>
+    <li>Recognize common digital threats such as phishing and insecure passwords</li>
+    <li>Encourage responsible and safe internet use</li>
+    <li>Develop critical thinking skills</li>
   </ul>
 
-  <h3>Materials & Resources</h3>
+  <h3>Materials</h3>
   <ul>
-    <li>A computer or tablet with internet access.</li>
-    <li>The MOOC platform and public access URL.</li>
-    <li>Presentation slides and visual examples.</li>
-    <li>Digital exercises and short quizzes.</li>
+    <li>Computer or tablet with internet access</li>
+    <li>MOOC platform and public access URL</li>
+    <li>Presentation slides and visuals</li>
+    <li>Digital quizzes and exercises</li>
   </ul>
-
-  <h3>Attention to Diversity</h3>
-  <p>To address different levels within the classroom, the activity included varied tasks with different degrees of difficulty. Basic explanations and visual examples were provided for students with limited digital experience, while optional extension activities were offered to more advanced students. Group discussions and peer support were encouraged to ensure that all students could participate actively and learn at their own pace.</p>
 </div>
 
-<!-- Videos Tab -->
-<div id="videos" class="tab-content card">
-  <h2>🎥 Video: Online Safety Basics</h2>
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/watch?v=qtJNRxMRuPE" allowfullscreen></iframe>
+<!-- VIDEOS -->
+<div id="videos" class="content">
+  <h2>Learning Videos</h2>
+  <p>Watch these short videos to understand online safety concepts.</p>
+
+  <iframe width="100%" height="315"
+    src="https://www.youtube.com/embed/3QhU9jd03a0"
+    allowfullscreen></iframe>
+
+  <iframe width="100%" height="315"
+    src="https://www.youtube.com/embed/yrln8nyVBLU"
+    allowfullscreen></iframe>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="content">
+  <h2>Scenario-Based Quiz</h2>
+
+  <div class="quiz-question">
+    <p><strong>Scenario:</strong> You receive an email asking for your password.</p>
+
+    <div class="quiz-option" onclick="checkAnswer(this, false)">Reply with your password</div>
+    <div class="quiz-option" onclick="checkAnswer(this, true)">Delete or report the email</div>
   </div>
-  <ul>
-    <li>Keep personal information private</li>
-    <li>Use strong passwords</li>
-    <li>Ask an adult when unsure</li>
-  </ul>
 
-  <h2>🎥 Video: Cyberbullying & Fake News</h2>
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/JkkTN0pQ_Ug" allowfullscreen></iframe>
-  </div>
-  <ul>
-    <li>Cyberbullying is not okay</li>
-    <li>Fake news spreads false information</li>
-    <li>Think before sharing</li>
-  </ul>
+  <p id="score">Score: 0</p>
 </div>
 
-<!-- Scenario Quiz Tab -->
-<div id="quiz" class="tab-content card">
-  <h2>Scenario Quiz</h2>
-  <div id="quizArea"></div>
-  <button onclick="gradeQuiz()">Submit Answers</button>
-  <span id="score" style="margin-left:12px;font-weight:700"></span>
+<!-- POSTER -->
+<div id="poster" class="content">
+  <h2>Cybersecurity Poster</h2>
+  <img src="stockvault-cyber-security-concept174251.jpg" class="center-img">
 </div>
 
-<!-- Flowchart Tab -->
-<div id="flow" class="tab-content card">
-  <h2>🧭 Cyberbullying Flowchart</h2>
-  <div class="flow-step">Someone sends a mean message</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step">Stop — do not reply</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step">Save the message</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step">Tell a trusted adult</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step final-step">Block & Report • You are not alone</div>
+<!-- FLOWCHART -->
+<div id="flowchart" class="content">
+  <h2>Safety Decision Flowchart</h2>
+  <p>Think before you click, share, or download online.</p>
 </div>
 
-<!-- Poster Tab -->
-<div id="poster" class="tab-content card">
-  <h2>📄 Printable Poster: Internet Safety Rules</h2>
-  <ol>
-    <li>Keep personal information private</li>
-    <li>Use strong passwords</li>
-    <li>Be kind online</li>
-    <li>Don’t click strange links</li>
-    <li>Tell a trusted adult</li>
-  </ol>
-</div>
-
-<!-- References Tab -->
-<div id="references" class="tab-content card">
+<!-- REFERENCES -->
+<div id="references" class="content">
   <h2>References</h2>
   <ul>
-    <li>Video: Online Safety Basics — <a href="https://www.youtube.com/watch?v=yrln8nyVBLU" target="_blank">Watch Here</a></li>
-    <li>Video: Cyberbullying & Fake News — <a href="https://www.youtube.com/watch?v=JkkTN0pQ_Ug" target="_blank">Watch Here</a></li>
+    <li><a href="https://www.youtube.com/watch?v=3QhU9jd03a0" target="_blank">Online Safety for Kids</a></li>
+    <li><a href="https://www.youtube.com/watch?v=yrln8nyVBLU" target="_blank">Cybersecurity Basics</a></li>
   </ul>
 </div>
 
-<!-- About Me Tab -->
-<div id="aboutme" class="tab-content card">
+<!-- ABOUT ME -->
+<div id="about" class="content">
   <h2>About Me</h2>
-  <div style="text-align:center; margin-bottom:16px;">
-    <img src="75dcf362-4866-4fac-a144-59ec8cb56492.jpeg" alt="Ana's Photo" class="about-photo">
-  </div>
-  <p>Hello! I am Ana, a language assistant with a passion for technology, communication, and languages. I enjoy creating interactive learning experiences that make digital safety fun and engaging for students. Through my work, I aim to inspire curiosity about technology while fostering safe and responsible online behavior.</p>
+
+  <img src="75dcf362-4866-4fac-a144-59ec8cb56492.jpeg" class="center-img">
+
+  <p>
+    I am a language assistant and technology enthusiast with a strong passion for communication,
+    digital literacy, and languages. I enjoy helping students build confidence in using technology
+    safely while developing their critical thinking skills.
+  </p>
+
+  <p>
+    Through this MOOC, my goal is to make cybersecurity concepts accessible, engaging, and practical
+    for young learners in a fun and meaningful way.
+  </p>
 </div>
 
-</main>
-
 <footer>
-  © Operation Safe Internet • Educational Use
+  © 2026 Operation: Safe Internet MOOC
 </footer>
 
 <script>
-// Tab switching
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tab-content");
-  for(i=0;i<tabcontent.length;i++){ tabcontent[i].style.display="none"; }
-  tablinks = document.getElementsByClassName("tablinks");
-  for(i=0;i<tablinks.length;i++){ tablinks[i].className = tablinks[i].className.replace(" active",""); }
-  document.getElementById(tabName).style.display="block";
-  evt.currentTarget.className += " active";
-}
+  let score = 0;
 
-// Quiz Data
-const quizData = [
-  { q: 'Someone asks for your password. What do you do?', options: ['Give it','Say no and tell an adult','Ignore it'], a:1 },
-  { q: 'You see a mean comment online. What do you do?', options: ['Reply','Save & Report','Share with friends'], a:1 },
-  { q: 'You receive a suspicious link. Action?', options: ['Click it','Ask adult first','Forward to friends'], a:1 }
-];
-
-// Build Quiz
-function buildQuiz(){
-  const area = document.getElementById('quizArea');
-  area.innerHTML='';
-  quizData.forEach((item, idx)=>{
-    const qDiv = document.createElement('div');
-    qDiv.className='quiz-question';
-    const h = document.createElement('strong'); h.textContent='Scenario '+(idx+1)+': '; qDiv.appendChild(h);
-    const p = document.createElement('span'); p.textContent=item.q; qDiv.appendChild(p);
-    item.options.forEach((opt,i)=>{
-      const label = document.createElement('label');
-      label.className='quiz-option';
-      label.innerHTML=`<input type="radio" name="q${idx}" value="${i}" style="margin-right:6px"> ${opt}`;
-      qDiv.appendChild(label);
-    });
-    area.appendChild(qDiv);
-  });
-}
-buildQuiz();
-
-// Grade Quiz
-function gradeQuiz(){
-  let score=0;
-  quizData.forEach((item, idx)=>{
-    const selected = document.querySelector(`input[name=q${idx}]:checked`);
-    const labels = document.getElementsByName(`q${idx}`);
-    const optionLabels = Array.from(document.querySelectorAll('#quizArea .quiz-question')[idx].querySelectorAll('.quiz-option'));
-    optionLabels.forEach((lab,i)=>{
-      lab.classList.remove('correct','wrong');
-      const input = lab.querySelector('input');
-      if(i===item.a){ lab.classList.add('correct'); }
-      if(input.checked && i!==item.a){ lab.classList.add('wrong'); }
-    });
-    if(selected && Number(selected.value)===item.a) score++;
-  });
-  document.getElementById('score').textContent=`Score: ${score} / ${quizData.length}`;
-}
-
-// Click whole label to select
-document.addEventListener('click', e=>{
-  if(e.target.closest('.quiz-option')){
-    const lab=e.target.closest('.quiz-option');
-    const radio=lab.querySelector('input[type=radio]');
-    if(radio) radio.checked=true;
+  function openTab(tabId) {
+    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
   }
-});
+
+  function checkAnswer(el, correct) {
+    if (correct) {
+      el.classList.add('correct');
+      score++;
+    } else {
+      el.classList.add('incorrect');
+    }
+    document.getElementById('score').innerText = "Score: " + score;
+  }
 </script>
 
 </body>
