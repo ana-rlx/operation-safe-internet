@@ -280,9 +280,13 @@ footer {
   <hr>
 
   <h2>Quiz Time!</h2>
-  <div id="cyberQuizArea"></div>
-  <button onclick="gradeCyberQuiz()">Submit Answers</button>
-  <span id="cyberScore" style="margin-left:12px;font-weight:700"></span>
+  <ol>
+    <li>What is cybersecurity?</li>
+    <li>Is “password123” a good password? Why?</li>
+    <li>Name one sign of a phishing scam.</li>
+    <li>Why should you keep accounts private?</li>
+    <li>True or False: You should share your password with your best friend.</li>
+  </ol>
 </div>
 
 <!-- Scenario Quiz Tab -->
@@ -355,14 +359,14 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
-// Scenario Quiz Data
+// Quiz Data
 const quizData = [
   { q: 'Someone asks for your password. What do you do?', options: ['Give it','Say no and tell an adult','Ignore it'], a:1 },
   { q: 'You see a mean comment online. What do you do?', options: ['Reply','Save & Report','Share with friends'], a:1 },
   { q: 'You receive a suspicious link. Action?', options: ['Click it','Ask adult first','Forward to friends'], a:1 }
 ];
 
-// Build Scenario Quiz
+// Build Quiz
 function buildQuiz(){
   const area = document.getElementById('quizArea');
   area.innerHTML='';
@@ -382,11 +386,12 @@ function buildQuiz(){
 }
 buildQuiz();
 
-// Grade Scenario Quiz
+// Grade Quiz
 function gradeQuiz(){
   let score=0;
   quizData.forEach((item, idx)=>{
     const selected = document.querySelector(`input[name=q${idx}]:checked`);
+    const labels = document.getElementsByName(`q${idx}`);
     const optionLabels = Array.from(document.querySelectorAll('#quizArea .quiz-question')[idx].querySelectorAll('.quiz-option'));
     optionLabels.forEach((lab,i)=>{
       lab.classList.remove('correct','wrong');
@@ -399,53 +404,7 @@ function gradeQuiz(){
   document.getElementById('score').textContent=`Score: ${score} / ${quizData.length}`;
 }
 
-// Cybersecurity Quiz Data
-const cyberQuizData = [
-  { q: 'What is cybersecurity?', options: ['Protecting online data','Playing video games','Sharing passwords'], a:0 },
-  { q: 'Is “password123” a good password?', options: ['Yes','No'], a:1 },
-  { q: 'Name one sign of a phishing scam.', options: ['Strange email address','Friendly message','Regular newsletter'], a:0 },
-  { q: 'Why should you keep accounts private?', options: ['To protect your information','To annoy friends','To make it public'], a:0 },
-  { q: 'True or False: You should share your password with your best friend.', options: ['True','False'], a:1 }
-];
-
-// Build Cybersecurity Quiz
-function buildCyberQuiz(){
-  const area = document.getElementById('cyberQuizArea');
-  area.innerHTML='';
-  cyberQuizData.forEach((item, idx)=>{
-    const qDiv = document.createElement('div');
-    qDiv.className='quiz-question';
-    const h = document.createElement('strong'); h.textContent='Question '+(idx+1)+': '; qDiv.appendChild(h);
-    const p = document.createElement('span'); p.textContent=item.q; qDiv.appendChild(p);
-    item.options.forEach((opt,i)=>{
-      const label = document.createElement('label');
-      label.className='quiz-option';
-      label.innerHTML=`<input type="radio" name="cq${idx}" value="${i}" style="margin-right:6px"> ${opt}`;
-      qDiv.appendChild(label);
-    });
-    area.appendChild(qDiv);
-  });
-}
-buildCyberQuiz();
-
-// Grade Cybersecurity Quiz
-function gradeCyberQuiz(){
-  let score=0;
-  cyberQuizData.forEach((item, idx)=>{
-    const selected = document.querySelector(`input[name=cq${idx}]:checked`);
-    const optionLabels = Array.from(document.querySelectorAll('#cyberQuizArea .quiz-question')[idx].querySelectorAll('.quiz-option'));
-    optionLabels.forEach((lab,i)=>{
-      lab.classList.remove('correct','wrong');
-      const input = lab.querySelector('input');
-      if(i===item.a){ lab.classList.add('correct'); }
-      if(input.checked && i!==item.a){ lab.classList.add('wrong'); }
-    });
-    if(selected && Number(selected.value)===item.a) score++;
-  });
-  document.getElementById('cyberScore').textContent=`Score: ${score} / ${cyberQuizData.length}`;
-}
-
-// Click whole label to select for both quizzes
+// Click whole label to select
 document.addEventListener('click', e=>{
   if(e.target.closest('.quiz-option')){
     const lab=e.target.closest('.quiz-option');
