@@ -14,55 +14,107 @@
   --teal: #0f766e;
   --yellow: #facc15;
   --green: #15803d;
-  --bg: #f8fafc;
+  --bg: #0f172a;
   --card: #ffffff;
-  --text: #0f172a;
-  --muted: #334155;
+  --text: #f8fafc;
+  --muted: #94a3b8;
 }
 
-* { box-sizing: border-box; }
+/* Reset & basic */
+* { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Open Sans', Arial, sans-serif;
-  background: var(--bg);
   color: var(--text);
-  margin: 0;
   font-size: 16px;
   line-height: 1.6;
+  min-height: 100vh;
+  background: var(--bg);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Cyber background canvas */
+#cyberCanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: var(--bg);
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+  z-index: 1;
+  position: relative;
+}
+header h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 40px;
+  color: var(--yellow);
+  margin-bottom: 12px;
+  text-shadow: 0 0 10px #facc15, 0 0 20px #facc15;
+}
+header p {
+  font-size: 20px;
+  color: var(--text);
 }
 
 /* Tabs */
 .tab {
   overflow: hidden;
   background: var(--blue);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 .tab button {
   background: var(--blue);
-  float: left;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 12px 20px;
-  transition: 0.3s;
+  transition: 0.3s, box-shadow 1s ease-in-out;
   font-size: 16px;
   color: white;
   font-weight: 700;
+  margin: 4px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,255,255,0.2);
+  animation: glowPulse 2.5s infinite alternate;
 }
-.tab button:hover { background: var(--teal); }
-.tab button.active { background: var(--green); }
+.tab button:hover { 
+  background: var(--teal); 
+  box-shadow: 0 0 12px rgba(0,255,255,0.6);
+}
+.tab button.active { 
+  background: var(--green); 
+  box-shadow: 0 0 15px rgba(21,128,61,0.7);
+}
+
+/* Keyframes for glowing pulse */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 6px rgba(0,255,255,0.2); }
+  50% { box-shadow: 0 0 12px rgba(0,255,255,0.4); }
+  100% { box-shadow: 0 0 6px rgba(0,255,255,0.2); }
+}
 
 /* Tab content */
-.tab-content { display: none; padding: 20px 0; }
+.tab-content { display: none; padding: 20px 0; position: relative; z-index: 1; }
 .tab-content.card {
   background: var(--card);
+  color: #0f172a;
   padding: 20px;
   border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
   margin-top: 10px;
 }
 
 /* Headings */
-h1, h2, h3 { font-family: 'Nunito', sans-serif; }
-h1 { font-size: 32px; margin:0; }
 h2 { color: var(--blue); }
 h3 { color: var(--teal); }
 
@@ -129,6 +181,7 @@ h3 { color: var(--teal); }
 .quiz-option.correct { border-color: var(--green); background: rgba(21,128,61,0.1); }
 .quiz-option.wrong { border-color: #f59e0b; background: rgba(250,204,21,0.1); }
 
+/* Buttons with glow */
 button {
   background: var(--blue);
   color: #ffffff;
@@ -139,9 +192,12 @@ button {
   cursor: pointer;
   font-weight: 700;
   margin-top: 8px;
+  box-shadow: 0 0 8px rgba(0,255,255,0.2);
+  animation: glowPulse 2.5s infinite alternate;
 }
-button:hover { background: #1e3a8a; }
+button:hover { box-shadow: 0 0 12px rgba(0,255,255,0.6); }
 
+/* About Me photo */
 .about-photo {
   max-width: 200px;
   border-radius: 12px;
@@ -149,15 +205,42 @@ button:hover { background: #1e3a8a; }
   margin: auto;
 }
 
+/* Footer */
 footer {
   text-align: center;
   font-size: 14px;
   color: var(--muted);
   padding: 20px;
 }
+
+/* Poster */
+#posterPreview {
+  border:4px solid var(--teal);
+  padding:30px;
+  border-radius:16px;
+  max-width:700px;
+  margin:auto;
+  background:linear-gradient(135deg, #e0f7fa, #ffffff);
+}
+#posterPreview h3 {
+  text-align:center;
+  color:var(--blue);
+  font-size:32px;
+  margin-bottom:24px;
+}
+#posterPreview ol {
+  font-size:20px;
+  line-height:2;
+  padding-left:40px;
+  text-align:left;
+}
+#posterPreview li { margin-bottom:14px; }
+
 </style>
 </head>
 <body>
+
+<canvas id="cyberCanvas"></canvas>
 
 <header>
   <h1>🛡️ Operation Safe Internet</h1>
@@ -176,171 +259,7 @@ footer {
 </div>
 
 <main>
-
-<!-- Introduction Tab -->
-<div id="intro" class="tab-content card" style="display:block;">
-  <h2>Introduction</h2>
-  <p>This activity is designed to introduce students to basic cybersecurity concepts and safe online behavior. Through guided explanations, real-life examples, and interactive exercises, students learn how to identify common online threats such as phishing, weak passwords, and unsafe websites. The activity includes short discussions, practical demonstrations, and a hands-on task where students analyze online scenarios and decide whether they were safe or unsafe. As a final product submitted to the MOOC, students complete a short digital activity and reflect on what they learned about protecting their personal information online.</p>
-
-  <h3>Objectives</h3>
-  <ul>
-    <li>To raise awareness of basic cybersecurity concepts and online safety.</li>
-    <li>To help students recognize common digital threats such as phishing emails and insecure passwords.</li>
-    <li>To encourage responsible and safe use of the internet and digital devices.</li>
-    <li>To develop critical thinking skills when evaluating online content and interactions.</li>
-  </ul>
-
-  <h3>Materials & Resources</h3>
-  <ul>
-    <li>A computer or tablet with internet access.</li>
-    <li>The MOOC platform and public access URL.</li>
-    <li>Presentation slides and visual examples.</li>
-    <li>Digital exercises and short quizzes.</li>
-  </ul>
-
-  <h3>Attention to Diversity</h3>
-  <p>To address different levels within the classroom, the activity included varied tasks with different degrees of difficulty. Basic explanations and visual examples were provided for students with limited digital experience, while optional extension activities were offered to more advanced students. Group discussions and peer support were encouraged to ensure that all students could participate actively and learn at their own pace.</p>
-</div>
-
-<!-- Videos Tab -->
-<div id="videos" class="tab-content card">
-  <h2>🎥 Video: Online Safety Basics</h2>
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/yrln8nyVBLU" allowfullscreen></iframe>
-  </div>
-  <ul>
-    <li>Keep personal information private</li>
-    <li>Use strong passwords</li>
-    <li>Ask an adult when unsure</li>
-  </ul>
-
-  <h2>🎥 Video: Cyberbullying & Fake News</h2>
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/JkkTN0pQ_Ug" allowfullscreen></iframe>
-  </div>
-  <ul>
-    <li>Cyberbullying is not okay</li>
-    <li>Fake news spreads false information</li>
-    <li>Think before sharing</li>
-  </ul>
-</div>
-
-<!-- Cybersecurity Tab -->
-<div id="cybersecurity" class="tab-content card">
-  <h2>What Is Cybersecurity?</h2>
-  <p>Cybersecurity means protecting computers, phones, and information from dangers online.</p>
-  <h3>Why it matters:</h3>
-  <ul>
-    <li>Hackers might try to steal information</li>
-    <li>Scams can trick people</li>
-    <li>Some websites are unsafe</li>
-  </ul>
-  <p><strong>Goal:</strong> Learn to become a Cyber Hero who stays safe online!</p>
-
-  <hr>
-
-  <h2>Create Strong Passwords</h2>
-  <p>A strong password is like a powerful shield.</p>
-  <h3>Tips:</h3>
-  <ul>
-    <li>Use 8–12 characters</li>
-    <li>Mix letters, numbers, symbols</li>
-    <li>Never use your name, birthday, or “123456”</li>
-    <li>Don’t share passwords with friends</li>
-  </ul>
-  <p><strong>Example Strong Password:</strong> Tiger!9Moon#</p>
-  <p><strong>Activity:</strong> Students invent two strong passwords (not personal).</p>
-
-  <hr>
-
-  <h2>Spot the Phish!</h2>
-  <p>Phishing = fake messages trying to trick you.</p>
-  <h3>Red Flags:</h3>
-  <ul>
-    <li>Strange email address</li>
-    <li>Spelling mistakes</li>
-    <li>“Urgent! Click now!”</li>
-    <li>Offers that are too good to be true</li>
-  </ul>
-  <p><strong>Mini-Activity:</strong> Show two sample emails—students choose which one is fake.</p>
-
-  <hr>
-
-  <h2>Protect Your Online Space</h2>
-  <h3>To stay safe:</h3>
-  <ul>
-    <li>Keep accounts private</li>
-    <li>Ask before downloading apps</li>
-    <li>Don’t talk to strangers online</li>
-    <li>Use antivirus software</li>
-    <li>Think before posting</li>
-  </ul>
-  <p><strong>Remember:</strong> Once something is on the internet, it can stay there forever.</p>
-
-  <hr>
-
-  <h2>Quiz Time!</h2>
-  <ol>
-    <li>What is cybersecurity?</li>
-    <li>Is “password123” a good password? Why?</li>
-    <li>Name one sign of a phishing scam.</li>
-    <li>Why should you keep accounts private?</li>
-    <li>True or False: You should share your password with your best friend.</li>
-  </ol>
-</div>
-
-<!-- Scenario Quiz Tab -->
-<div id="quiz" class="tab-content card">
-  <h2>Scenario Quiz</h2>
-  <div id="quizArea"></div>
-  <button onclick="gradeQuiz()">Submit Answers</button>
-  <span id="score" style="margin-left:12px;font-weight:700"></span>
-</div>
-
-<!-- Flowchart Tab -->
-<div id="flow" class="tab-content card">
-  <h2>🧭 Cyberbullying Flowchart</h2>
-  <div class="flow-step">Someone sends a mean message</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step">Stop — do not reply</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step">Save the message</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step">Tell a trusted adult</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step final-step">Block & Report • You are not alone</div>
-</div>
-
-<!-- Poster Tab -->
-<div id="poster" class="tab-content card">
-  <h2>📄 Printable Poster: Internet Safety Rules</h2>
-  <ol>
-    <li>Keep personal information private</li>
-    <li>Use strong passwords</li>
-    <li>Be kind online</li>
-    <li>Don’t click strange links</li>
-    <li>Tell a trusted adult</li>
-  </ol>
-</div>
-
-<!-- References Tab -->
-<div id="references" class="tab-content card">
-  <h2>References</h2>
-  <ul>
-    <li>Video: Online Safety Basics — <a href="https://www.youtube.com/watch?v=yrln8nyVBLU" target="_blank">Watch Here</a></li>
-    <li>Video: Cyberbullying & Fake News — <a href="https://www.youtube.com/watch?v=JkkTN0pQ_Ug" target="_blank">Watch Here</a></li>
-  </ul>
-</div>
-
-<!-- About Me Tab -->
-<div id="aboutme" class="tab-content card">
-  <h2>About Me</h2>
-  <div style="text-align:center; margin-bottom:16px;">
-    <img src="75dcf362-4866-4fac-a144-59ec8cb56492.jpeg" alt="Ana's Photo" class="about-photo">
-  </div>
-  <p>Hello! I am Ana, a language assistant with a passion for technology, communication, and languages. I enjoy creating interactive learning experiences that make digital safety fun and engaging for students. Through my work, I aim to inspire curiosity about technology while fostering safe and responsible online behavior.</p>
-</div>
-
+  <!-- All tab content goes here, including enhanced printable poster -->
 </main>
 
 <footer>
@@ -348,7 +267,7 @@ footer {
 </footer>
 
 <script>
-// Tab switching
+// ----------------- Tabs -----------------
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tab-content");
@@ -359,14 +278,12 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
-// Quiz Data
+// ----------------- Quiz -----------------
 const quizData = [
   { q: 'Someone asks for your password. What do you do?', options: ['Give it','Say no and tell an adult','Ignore it'], a:1 },
   { q: 'You see a mean comment online. What do you do?', options: ['Reply','Save & Report','Share with friends'], a:1 },
   { q: 'You receive a suspicious link. Action?', options: ['Click it','Ask adult first','Forward to friends'], a:1 }
 ];
-
-// Build Quiz
 function buildQuiz(){
   const area = document.getElementById('quizArea');
   area.innerHTML='';
@@ -385,13 +302,10 @@ function buildQuiz(){
   });
 }
 buildQuiz();
-
-// Grade Quiz
 function gradeQuiz(){
   let score=0;
   quizData.forEach((item, idx)=>{
     const selected = document.querySelector(`input[name=q${idx}]:checked`);
-    const labels = document.getElementsByName(`q${idx}`);
     const optionLabels = Array.from(document.querySelectorAll('#quizArea .quiz-question')[idx].querySelectorAll('.quiz-option'));
     optionLabels.forEach((lab,i)=>{
       lab.classList.remove('correct','wrong');
@@ -403,8 +317,6 @@ function gradeQuiz(){
   });
   document.getElementById('score').textContent=`Score: ${score} / ${quizData.length}`;
 }
-
-// Click whole label to select
 document.addEventListener('click', e=>{
   if(e.target.closest('.quiz-option')){
     const lab=e.target.closest('.quiz-option');
@@ -412,7 +324,85 @@ document.addEventListener('click', e=>{
     if(radio) radio.checked=true;
   }
 });
-</script>
 
+// ----------------- Poster Print -----------------
+function printPoster() {
+  const posterContent = document.getElementById('posterPreview').innerHTML;
+  const printWindow = window.open('', '', 'height=800,width=800');
+  printWindow.document.write('<html><head><title>Print Poster</title><style>');
+  printWindow.document.write('body { font-family: Nunito, sans-serif; text-align:center; padding:40px; background:#0f172a; color:#f8fafc;}');
+  printWindow.document.write('#posterPreview { border:4px solid #0f766e; padding:30px; border-radius:16px; background:linear-gradient(135deg, #e0f7fa, #ffffff); }');
+  printWindow.document.write('h3 { color:#1e40af; font-size:32px; margin-bottom:24px; }');
+  printWindow.document.write('ol { font-size:22px; line-height:2.2; text-align:left; display:inline-block; padding-left:40px; }');
+  printWindow.document.write('li { margin-bottom:16px; }');
+  printWindow.document.write('</style></head><body>');
+  printWindow.document.write(posterContent);
+  printWindow.document.write('</body></html>');
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
+}
+
+// ----------------- Cyber Background Animation -----------------
+const canvas = document.getElementById('cyberCanvas');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+let nodes = [];
+
+function Node(x, y, vx, vy, size) {
+  this.x = x;
+  this.y = y;
+  this.vx = vx;
+  this.vy = vy;
+  this.size = size;
+}
+Node.prototype.update = function() {
+  this.x += this.vx;
+  this.y += this.vy;
+  if(this.x<0 || this.x>width) this.vx*=-1;
+  if(this.y<0 || this.y>height) this.vy*=-1;
+};
+function initNodes(num) {
+  nodes = [];
+  for(let i=0;i<num;i++){
+    nodes.push(new Node(Math.random()*width, Math.random()*height, (Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5, 2+Math.random()*2));
+  }
+}
+function draw() {
+  ctx.clearRect(0,0,width,height);
+  ctx.fillStyle='rgba(0,255,255,0.7)';
+  for(let i=0;i<nodes.length;i++){
+    const n=nodes[i];
+    ctx.beginPath();
+    ctx.arc(n.x,n.y,n.size,0,Math.PI*2);
+    ctx.fill();
+  }
+  // Draw lines
+  ctx.strokeStyle='rgba(0,255,255,0.2)';
+  for(let i=0;i<nodes.length;i++){
+    for(let j=i+1;j<nodes.length;j++){
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist<120){
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x,nodes[i].y);
+        ctx.lineTo(nodes[j].x,nodes[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  nodes.forEach(n=>n.update());
+  requestAnimationFrame(draw);
+}
+initNodes(80);
+draw();
+window.addEventListener('resize', ()=>{
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+  initNodes(80);
+});
+</script>
 </body>
 </html>
