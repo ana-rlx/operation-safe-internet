@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Operation Safe Internet</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operation Safe Internet - MOOC</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -18,11 +18,10 @@
       --card: #ffffff;
       --text: #0f172a;
       --muted: #334155;
+      --accent: #0f766e;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Open Sans', Arial, sans-serif;
@@ -35,7 +34,7 @@
 
     header {
       background: linear-gradient(90deg, var(--blue), var(--teal));
-      color: #ffffff;
+      color: #fff;
       padding: 24px 16px;
       text-align: center;
     }
@@ -46,21 +45,33 @@
       margin: 0;
     }
 
-    header p {
-      font-size: 18px;
-      margin-top: 8px;
+    header p { font-size: 18px; margin-top: 8px; }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: #e0f2fe;
+      padding: 8px;
     }
 
-    main {
-      max-width: 960px;
-      margin: auto;
-      padding: 20px;
+    nav button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      margin: 4px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    h2, h3 {
-      font-family: 'Nunito', sans-serif;
-      color: var(--blue);
-    }
+    nav button:hover { background: var(--blue); }
+
+    main { max-width: 960px; margin: auto; padding: 20px; }
+
+    h2, h3 { font-family: 'Nunito', sans-serif; color: var(--blue); }
 
     .card {
       background: var(--card);
@@ -111,10 +122,7 @@
       color: var(--muted);
     }
 
-    .final-step {
-      background: #ecfdf5;
-      border-left: 6px solid var(--green);
-    }
+    .final-step { background: #ecfdf5; border-left: 6px solid var(--green); }
 
     /* Quiz */
     .quiz-question {
@@ -124,30 +132,41 @@
       margin-bottom: 14px;
     }
 
-    button {
+    .quiz-option {
+      display: block;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #e6f0ff;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    .quiz-option.correct { border-color: var(--green); background: rgba(21,128,61,0.1); }
+    .quiz-option.wrong { border-color: var(--yellow); background: rgba(250,204,21,0.1); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    button.quiz-submit {
       background: var(--blue);
-      color: #ffffff;
+      color: #fff;
       border: none;
       padding: 12px 18px;
       border-radius: 10px;
       font-size: 16px;
-      cursor: pointer;
       font-weight: 700;
+      cursor: pointer;
     }
 
-    button:hover {
-      background: #1e3a8a;
-    }
+    button.quiz-submit:hover { background: #1e3a8a; }
 
-    footer {
-      text-align: center;
-      font-size: 14px;
-      color: var(--muted);
-      padding: 20px;
-    }
+    footer { text-align: center; font-size: 14px; color: var(--muted); padding: 20px; }
+
+    ul li { margin: 6px 0; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
-
 <body>
 
 <header>
@@ -155,100 +174,162 @@
   <p>A Cyber Training Course for Kids (Grade 6)</p>
 </header>
 
+<nav>
+  <button onclick="openTab('intro')">🏁 Introduction</button>
+  <button onclick="openTab('videos')">🎥 Videos</button>
+  <button onclick="openTab('flowchart')">🧭 Flowchart</button>
+  <button onclick="openTab('quiz')">🧠 Scenario Quiz</button>
+  <button onclick="openTab('poster')">📄 Poster</button>
+  <button onclick="openTab('references')">📚 References</button>
+  <button onclick="openTab('about')">🙋 About Me</button>
+</nav>
+
 <main>
+  <!-- Introduction Tab -->
+  <section id="intro" class="tab-content card active">
+    <h2>🏁 Introduction</h2>
+    <p>This activity is designed to introduce students to basic cybersecurity concepts and safe online behavior. Through guided explanations, real-life examples, and interactive exercises, students learn how to identify common online threats such as phishing, weak passwords, and unsafe websites.</p>
+    <h3>Objectives</h3>
+    <ul>
+      <li>🎯 Raise awareness of basic cybersecurity concepts and online safety</li>
+      <li>🛡️ Recognize common digital threats such as phishing emails and insecure passwords</li>
+      <li>💻 Encourage responsible and safe use of the internet and digital devices</li>
+      <li>🧠 Develop critical thinking skills when evaluating online content and interactions</li>
+    </ul>
+    <h3>Materials & Resources</h3>
+    <ul>
+      <li>💻 Computer or tablet with internet access</li>
+      <li>🌐 MOOC platform and public access URL</li>
+      <li>📊 Presentation slides and visual examples</li>
+      <li>📝 Digital exercises and short quizzes</li>
+    </ul>
+    <h3>Attention to Diversity</h3>
+    <p>Tasks are adapted for varying student skill levels. Visual examples and guided support help beginners, while extension activities challenge advanced learners. Group discussion and peer support are encouraged.</p>
+  </section>
 
-<section class="card">
-  <h2>👋 Welcome</h2>
-  <p>
-    This course helps students learn how to stay <strong>safe</strong>, <strong>kind</strong>, and <strong>smart</strong> online.
-  </p>
-  <div class="highlight">⭐ Teacher-approved • Kid-safe • Easy to follow</div>
-</section>
+  <!-- Videos Tab -->
+  <section id="videos" class="tab-content card">
+    <h2>🎥 Videos</h2>
 
-<section class="card">
-  <h2>🎥 Video: Online Safety Basics</h2>
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/yrln8nyVBLU" allowfullscreen></iframe>
-  </div>
+    <h3>📹 Online Safety Basics</h3>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/yrln8nyVBLU" allowfullscreen></iframe>
+    </div>
+    <ul>
+      <li>🔒 Keep personal information private</li>
+      <li>🔑 Use strong passwords</li>
+      <li>🧑‍🏫 Ask an adult when unsure</li>
+    </ul>
 
-  <h3>📌 Key Points</h3>
-  <ul>
-    <li>🔒 Keep personal information private</li>
-    <li>🔑 Use strong passwords</li>
-    <li>🧑‍🏫 Ask an adult when unsure</li>
-  </ul>
-</section>
+    <h3>📹 Cyberbullying & Fake News</h3>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/JkkTN0pQ_Ug" allowfullscreen></iframe>
+    </div>
+    <ul>
+      <li>💬 Cyberbullying is not okay</li>
+      <li>📰 Fake news spreads false information</li>
+      <li>🤔 Think before sharing</li>
+    </ul>
+  </section>
 
-<section class="card">
-  <h2>🎥 Video: Cyberbullying & Fake News</h2>
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/JkkTN0pQ_Ug" allowfullscreen></iframe>
-  </div>
+  <!-- Flowchart Tab -->
+  <section id="flowchart" class="tab-content card">
+    <h2>🧭 Cyberbullying Response Flowchart</h2>
+    <div class="flow-step">📱 Someone sends a mean message</div>
+    <div class="flow-arrow">⬇</div>
+    <div class="flow-step">⏸️ Stop — do not reply</div>
+    <div class="flow-arrow">⬇</div>
+    <div class="flow-step">📸 Save the message</div>
+    <div class="flow-arrow">⬇</div>
+    <div class="flow-step">🧑‍🏫 Tell a trusted adult</div>
+    <div class="flow-arrow">⬇</div>
+    <div class="flow-step final-step">🚫 Block & Report • 💚 You are not alone</div>
+  </section>
 
-  <ul>
-    <li>💬 Cyberbullying is not okay</li>
-    <li>📰 Fake news spreads false information</li>
-    <li>🤔 Think before sharing</li>
-  </ul>
-</section>
+  <!-- Scenario Quiz Tab -->
+  <section id="quiz" class="tab-content card">
+    <h2>🧠 Interactive Scenario Quiz</h2>
 
-<section class="card">
-  <h2>🧭 What To Do If You Are Cyberbullied</h2>
+    <div class="quiz-question">
+      <strong>📌 Scenario 1:</strong> Someone asks for your password.
+      <label class="quiz-option"><input type="radio" name="q0" value="0"> 🤔 Give the password</label>
+      <label class="quiz-option"><input type="radio" name="q0" value="1"> ✅ Say no and tell a trusted adult</label>
+      <label class="quiz-option"><input type="radio" name="q0" value="2"> 💬 Reply with a joke</label>
+    </div>
 
-  <div class="flow-step">📱 Someone sends a mean message</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step">⏸️ Stop — do not reply</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step">📸 Save the message</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step">🧑‍🏫 Tell a trusted adult</div>
-  <div class="flow-arrow">⬇</div>
-  <div class="flow-step final-step">🚫 Block & Report • 💚 You are not alone</div>
-</section>
+    <div class="quiz-question">
+      <strong>📌 Scenario 2:</strong> You see a mean comment online.
+      <label class="quiz-option"><input type="radio" name="q1" value="0"> 💬 Reply angrily</label>
+      <label class="quiz-option"><input type="radio" name="q1" value="1"> ✅ Do not reply, save it, and report it</label>
+      <label class="quiz-option"><input type="radio" name="q1" value="2"> 🗣️ Share it with friends to laugh</label>
+    </div>
 
-<section class="card">
-  <h2>🧠 Scenario Quiz</h2>
+    <button class="quiz-submit" onclick="gradeScenarioQuiz()">Submit Answers</button>
+    <p id="scenarioScore" style="margin-top:12px;font-weight:700;"></p>
+  </section>
 
-  <div class="quiz-question">
-    <strong>📌 Scenario 1:</strong> Someone asks for your password.
-    <p>✅ Correct action: Say no and tell a trusted adult</p>
-  </div>
+  <!-- Poster Tab -->
+  <section id="poster" class="tab-content card">
+    <h2>📄 Printable Poster: Internet Safety Rules</h2>
+    <ol>
+      <li>🔐 Keep personal information private</li>
+      <li>🔑 Use strong passwords</li>
+      <li>💬 Be kind online</li>
+      <li>🚫 Don’t click strange links</li>
+      <li>🧑‍🏫 Tell a trusted adult</li>
+    </ol>
+  </section>
 
-  <div class="quiz-question">
-    <strong>📌 Scenario 2:</strong> You see a mean comment online.
-    <p>✅ Correct action: Do not reply, save it, and report it</p>
-  </div>
+  <!-- References Tab -->
+  <section id="references" class="tab-content card">
+    <h2>📚 References</h2>
+    <ul>
+      <li>🎬 Online Safety Basics Video: <a href="https://www.youtube.com/watch?v=yrln8nyVBLU" target="_blank">Watch on YouTube</a></li>
+      <li>📺 Cyberbullying & Fake News Video: <a href="https://www.youtube.com/watch?v=JkkTN0pQ_Ug" target="_blank">Watch on YouTube</a></li>
+    </ul>
+  </section>
 
-  <button onclick="alert('Great job! Review the rules often to stay safe online.')">
-    ✅ Finish Quiz
-  </button>
-</section>
-
-<section class="card">
-  <h2>📄 Printable Poster: Internet Safety Rules</h2>
-  <ol>
-    <li>🔐 Keep personal information private</li>
-    <li>🔑 Use strong passwords</li>
-    <li>💬 Be kind online</li>
-    <li>🚫 Don’t click strange links</li>
-    <li>🧑‍🏫 Tell a trusted adult</li>
-  </ol>
-</section>
-
-<section class="card">
-  <h2>🎓 Teacher’s Manual</h2>
-  <ul>
-    <li>💡 Discuss real-life examples</li>
-    <li>🗣️ Encourage questions</li>
-    <li>🤝 Reinforce kindness and reporting</li>
-  </ul>
-</section>
+  <!-- About Me Tab -->
+  <section id="about" class="tab-content card">
+    <h2>🙋 About Me</h2>
+    <ul>
+      <li>👩‍🏫 I’m Ana, a language assistant and technology enthusiast.</li>
+      <li>💬 Passionate about communication and languages.</li>
+      <li>🖥️ I love helping students explore the digital world safely.</li>
+      <li>🎯 My goal is to make learning about cybersecurity fun, interactive, and accessible for everyone.</li>
+    </ul>
+  </section>
 
 </main>
 
 <footer>
   © Operation Safe Internet • Educational Use
 </footer>
+
+<script>
+  // Tab functionality
+  function openTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+  }
+
+  // Scenario quiz grading
+  function gradeScenarioQuiz() {
+    let score = 0;
+    if (document.querySelector('input[name="q0"]:checked')?.value === "1") score++;
+    if (document.querySelector('input[name="q1"]:checked')?.value === "1") score++;
+    document.getElementById('scenarioScore').textContent = `Score: ${score} / 2`;
+  }
+
+  // allow clicking the whole label to select radio
+  document.addEventListener('click', e => {
+    if (e.target.closest('.quiz-option')) {
+      const lab = e.target.closest('.quiz-option');
+      const radio = lab.querySelector('input[type=radio]');
+      if (radio) radio.checked = true;
+    }
+  });
+</script>
 
 </body>
 </html>
