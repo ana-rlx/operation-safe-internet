@@ -5,9 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Operation Safe Internet</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@github/mona-sans@1.0.1/dist/index.css">
 <style>
+/* Manually importing Monaspace Neon Medium from CDN */
+@font-face {
+  font-family: 'Monaspace Neon';
+  src: url('https://cdn.jsdelivr.net/gh/githubnext/monaspace@v1.000/fonts/webfonts/MonaspaceNeon-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
 :root {
   --blue: #1e40af;
   --teal: #0f766e;
@@ -18,17 +25,23 @@
   --card: #ffffff;
   --text: #0f172a;
   --muted: #475569;
+  
+  /* Applying your new fonts */
+  --font-main: 'Mona Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Monaspace Neon', monospace;
 }
 
-/* Base */
+/* Base Styles */
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: var(--font-main);
+  font-weight: 600; /* SemiBold as requested */
   background: url("stockvault-cyber-security-concept174251.jpg") no-repeat center center fixed;
   background-size: cover;
   color: var(--text);
   font-size: 16px;
+  line-height: 1.6;
 }
 
 /* Overlay */
@@ -36,124 +49,88 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(248,250,252,0.94);
+  background: rgba(248,250,252,0.96);
   z-index: -1;
 }
 
-/* Header */
-header {
-  text-align: center;
-  padding: 36px 16px 20px;
-}
-header h1 {
-  font-family: 'Nunito', sans-serif;
-  font-size: 42px;
-  margin-bottom: 8px;
-}
+/* Typography Enhancements */
+h1, h2, h3 { font-weight: 800; font-family: var(--font-main); }
+header { text-align: center; padding: 40px 20px; }
+header h1 { font-size: 48px; margin-bottom: 10px; color: var(--blue); }
 
 /* Tabs */
-.tab {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 12px;
-}
-
+.tab { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 15px; }
 .tab button {
-  background: white;
-  border: 1px solid #cbd5e1;
-  padding: 10px 18px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  transition: 0.3s;
+  background: white; border: 1px solid #cbd5e1; padding: 12px 22px;
+  border-radius: 12px; cursor: pointer; font-family: var(--font-main);
+  font-weight: 700; transition: 0.3s; font-size: 14px;
+}
+.tab button.active { background: var(--blue); color: white; border-color: var(--blue); box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2); }
+
+/* Main Content */
+main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.card { background: var(--card); padding: 35px; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.06); margin-top: 25px; border: 1px solid rgba(226, 232, 240, 0.8); }
+
+/* Monaspace specific styling */
+.mono-text, code, .password-example, .red-flag {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--teal);
 }
 
-.tab button.active {
-  background: var(--blue);
-  color: white;
-  border-color: var(--blue);
-}
+/* Intro & Prep Styles */
+.resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+.grid-item { background: #f1f5f9; padding: 12px; border-radius: 8px; font-size: 14px; }
+.btn-action { font-family: var(--font-main); font-weight: 700; padding: 12px 24px; border-radius: 10px; cursor: pointer; border: none; transition: 0.2s; }
+.btn-lesson { background: #475569; color: white; margin-bottom: 15px; }
 
-/* Content */
-main {
-  max-width: 900px;
-  margin: auto;
-  padding: 0 16px 40px;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-.card {
-  background: var(--card);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  margin-top: 20px;
-}
-
-h2 { color: var(--blue); font-family: 'Nunito', sans-serif; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
-
-/* Quiz Styles */
-.quiz-item { margin-bottom: 25px; padding: 15px; border-radius: 12px; background: #f8fafc; }
+/* Quiz & Flow Styles */
+.quiz-item { margin-bottom: 25px; padding: 20px; border-radius: 16px; background: #f8fafc; border: 1px solid #e2e8f0; }
 .options button {
-  display: block; width: 100%; text-align: left; padding: 10px; margin: 5px 0;
-  border: 1px solid #ddd; border-radius: 8px; background: white; cursor: pointer;
+  display: block; width: 100%; text-align: left; padding: 14px; margin: 8px 0;
+  border: 1px solid #cbd5e1; border-radius: 10px; background: white; cursor: pointer;
+  font-family: var(--font-main); font-weight: 600;
 }
-.correct { background: #dcfce7 !important; border-color: #22c55e !important; }
-.wrong { background: #fee2e2 !important; border-color: #ef4444 !important; }
+.correct { background: #dcfce7 !important; border-color: var(--green) !important; color: #166534; }
+.wrong { background: #fee2e2 !important; border-color: #b91c1c !important; color: #991b1b; }
 
-/* Enhanced Flow */
-.flow-container { display: flex; flex-direction: column; align-items: center; }
+.flow-container { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .flow-box {
-  background: white; border: 2px solid var(--teal); padding: 20px;
-  border-radius: 15px; width: 100%; max-width: 400px; text-align: center;
-  font-weight: 600; position: relative; box-shadow: 4px 4px 0px var(--teal);
+  background: white; border: 2.5px solid var(--teal); padding: 20px;
+  border-radius: 18px; width: 100%; max-width: 450px; text-align: center;
+  box-shadow: 5px 5px 0px var(--teal);
 }
-.flow-arrow { font-size: 24px; color: var(--teal); margin: 10px 0; }
 
-/* Poster Visuals */
+/* Poster Styles */
 .poster-preview {
-  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
-  border: 4px dashed var(--blue); padding: 40px; border-radius: 20px; text-align: center;
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  border: 5px dashed var(--blue); padding: 50px; border-radius: 30px; text-align: center;
 }
-.poster-rule { font-size: 20px; font-weight: 800; color: var(--blue); margin: 15px 0; list-style: none; }
 
-/* Print Option */
+/* References */
+.ref-url { font-family: var(--font-mono); font-size: 13px; color: var(--blue); word-break: break-all; }
+
+/* Print settings */
 @media print {
-  body * { visibility: hidden; }
-  #printable-poster, #printable-poster * { visibility: visible; }
-  #printable-poster { position: absolute; left: 0; top: 0; width: 100%; }
+  .tab, .btn-action, footer { display: none !important; }
+  body { background: white !important; }
+  .card { box-shadow: none !important; border: none !important; }
 }
-
-.btn-print {
-  background: var(--green); color: white; border: none; padding: 12px 24px;
-  border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px;
-}
-
-/* Video Wrapper */
-.video-container { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 20px; }
-.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; }
 
 </style>
 </head>
-
 <body>
 
 <header>
   <h1>🛡️ Operation Safe Internet</h1>
-  <p>Primary Grade 6 Cybersecurity MOOC</p>
+  <p style="font-size: 1.2rem; color: var(--muted);">Primary Grade 6 • Cybersecurity Awareness MOOC</p>
 </header>
 
-<div class="tab">
+<nav class="tab">
   <button class="tablinks active" onclick="openTab(event,'intro')">Introduction</button>
   <button class="tablinks" onclick="openTab(event,'concepts')">Key Concepts</button>
   <button class="tablinks" onclick="openTab(event,'videos')">Videos</button>
@@ -161,39 +138,37 @@ h2 { color: var(--blue); font-family: 'Nunito', sans-serif; border-bottom: 2px s
   <button class="tablinks" onclick="openTab(event,'flow')">Cyberbullying Flow</button>
   <button class="tablinks" onclick="openTab(event,'poster')">Poster</button>
   <button class="tablinks" onclick="openTab(event,'references')">References</button>
-</div>
+</nav>
 
 <main>
 
 <div id="intro" class="tab-content active">
-  <div class="card">
+  <button class="btn-action btn-lesson" onclick="printDiv('intro-content')">📄 Export Lesson Plan (PDF)</button>
+  <div class="card" id="intro-content">
     <h2>Activity Overview</h2>
-    <p>This activity is designed to introduce students to basic cybersecurity concepts and safe online behavior. Through guided explanations, real-life examples, and interactive exercises, students learn how to identify common online threats such as phishing, weak passwords, and unsafe websites.</p>
+    <p>This activity introduces basic cybersecurity concepts and safe online behavior. Through guided explanations, real-life examples, and interactive exercises, students learn how to identify common online threats such as phishing, weak passwords, and unsafe websites.</p>
     
-    <p>The activity includes short discussions, practical demonstrations, and a hands-on task where students analyze online scenarios. As a final product, students complete a digital activity and reflect on protecting their personal information online.</p>
-
     <h3>🎯 Learning Objectives</h3>
     <ul>
-      <li>To raise awareness of basic cybersecurity concepts and online safety.</li>
-      <li>To help students recognize common digital threats such as phishing emails and insecure passwords.</li>
-      <li>To encourage responsible and safe use of the internet and digital devices.</li>
-      <li>To develop critical thinking skills when evaluating online content and interactions.</li>
+      <li>Raise awareness of basic cybersecurity and online safety.</li>
+      <li>Recognize common digital threats like phishing and insecure passwords.</li>
+      <li>Encourage responsible use of digital devices.</li>
+      <li>Develop critical thinking when evaluating online content.</li>
     </ul>
 
-    <h3>🛠️ Preparation & Development</h3>
-    <p>Materials including slides, real-world scenarios, and MOOC platform access were prepared and adapted for Grade 6 levels. The activity was developed via a public access URL where students explore digital content, interactive tasks, and short reflection exercises.</p>
+    <h3>🛠️ Methodology & Preparation</h3>
+    <p>Content was adapted to the students' level using a public access URL shared in the MOOC Virtual Classroom. Students explore digital modules, discuss safe vs. unsafe behaviors, and complete reflection tasks.</p>
 
-    <h3>🧰 Tools and Resources</h3>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #f8fafc; padding: 15px; border-radius: 10px;">
-      <div>• Computer/Tablet & Internet</div>
-      <div>• MOOC Platform & URL</div>
-      <div>• Presentation Slides</div>
-      <div>• Digital Quizzes</div>
-      <div>• Projector</div>
+    <h3>🧰 Tools & Resources</h3>
+    <div class="resource-grid">
+      <div class="grid-item">💻 Computer/Tablet</div>
+      <div class="grid-item">🌐 MOOC Platform</div>
+      <div class="grid-item">📽️ Classroom Projector</div>
+      <div class="grid-item">📊 Digital Quizzes</div>
     </div>
 
     <h3>🌈 Attention to Diversity</h3>
-    <p>To ensure all students succeed, the activity includes varied tasks with different degrees of difficulty. Basic visual examples support students with limited experience, while extension activities challenge advanced learners. Peer support and group discussions are encouraged to ensure everyone learns at their own pace.</p>
+    <p>Includes varied tasks for different skill levels. Basic visual examples support beginners, while extension activities challenge advanced students. Peer support is encouraged throughout the lesson.</p>
   </div>
 </div>
 
@@ -201,78 +176,36 @@ h2 { color: var(--blue); font-family: 'Nunito', sans-serif; border-bottom: 2px s
   <div class="card">
     <h2>Cybersecurity Essentials</h2>
     
-    <div class="concept-section">
-      <h3>🛡️ What is Cybersecurity?</h3>
-      <p>Cybersecurity means protecting computers, phones, and information from dangers online.</p>
-      <div class="info-box">
-        <strong>Why it matters:</strong>
-        <ul>
-          <li>Hackers might try to steal information.</li>
-          <li>Scams can trick people into making mistakes.</li>
-          <li>Some websites are unsafe for your device.</li>
-        </ul>
-      </div>
-    </div>
-
+    <h3>🛡️ What is Cybersecurity?</h3>
+    <p>Protecting your computers, phones, and private information from dangers online.</p>
     
+    <p><strong>Why it matters:</strong> Hackers try to steal data, scams trick users, and some sites are dangerous.</p>
 
-    <div class="concept-section">
-      <h3>🔑 Create Strong Passwords</h3>
-      <p>A strong password is like a <strong>powerful shield</strong> for your accounts.</p>
-      <div class="resource-grid">
-        <div>
-          <strong>Top Tips:</strong>
-          <ul>
-            <li>Use 8–12 characters.</li>
-            <li>Mix letters, numbers, and symbols.</li>
-            <li>No names or birthdays!</li>
-            <li>Keep it a secret!</li>
-          </ul>
-        </div>
-        <div style="background: #334155; color: #fbbf24; padding: 15px; border-radius: 10px; text-align: center;">
-          <small style="color: white; display: block; margin-bottom: 5px;">Example:</small>
-          <code style="font-size: 1.4em;">Tiger!9Moon#</code>
-        </div>
-      </div>
-      <div class="activity-box" style="background: #fef9c3; border: 2px dashed #facc15; padding: 15px; border-radius: 10px;">
-        <strong>✏️ Mini Activity:</strong> Invent two strong passwords (don't use real personal info).
-      </div>
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <h3>🔑 Create Strong Passwords</h3>
+    <p>A strong password is your digital shield. Remember these tips:</p>
+    <ul>
+        <li>Use 8–12 characters.</li>
+        <li>Mix <span class="mono-text">LETTERS, numbers, and symbols!</span></li>
+        <li>Never use your name or "123456".</li>
+    </ul>
+    <div style="background: #1e293b; padding: 20px; border-radius: 12px; text-align: center; margin: 15px 0;">
+        <span style="color: #94a3b8; font-size: 14px; display: block;">SECURE EXAMPLE:</span>
+        <span class="password-example" style="color: #38bdf8; font-size: 1.5rem;">Tiger!9Moon#</span>
     </div>
 
-    <div class="concept-section">
-      <h3>🎣 Spot the Phish!</h3>
-      <p><strong>Phishing</strong> are fake messages trying to trick you. Look for these <strong>Red Flags</strong>:</p>
-      <div class="resource-grid">
-        <div>📧 Strange email addresses</div>
-        <div>✍️ Spelling mistakes</div>
-        <div>⏰ "Urgent! Click now!"</div>
-        <div>🎁 Offers too good to be true</div>
-      </div>
-    </div>
-
+    <h3>🎣 Spot the Phish!</h3>
+    <p>Phishing = Fake messages trying to trick you. <strong>Red Flags:</strong></p>
     [Image showing an example of a phishing email with red flag annotations pointing to a fake sender address and a suspicious link]
-
-    <div class="concept-section">
-      <h3>🌐 Protect Your Online Space</h3>
-      <ul>
-        <li>Keep accounts <strong>private</strong>.</li>
-        <li><strong>Ask</strong> before downloading apps.</li>
-        <li>Don’t talk to <strong>strangers</strong> online.</li>
-        <li>Use <strong>antivirus</strong> software.</li>
-        <li><strong>Think before posting:</strong> Once it's online, it can stay there forever!</li>
-      </ul>
-    </div>
-
-    <div class="concept-section" style="border-top: 2px solid #e2e8f0; padding-top: 20px;">
-      <h3>📝 Slide 6 — Quiz Time!</h3>
-      <div class="quiz-item">
-        <p>1. What is cybersecurity?</p>
-        <p>2. Is “password123” a good password? Why?</p>
-        <p>3. Name one sign of a phishing scam.</p>
-        <p>4. Why should you keep accounts private?</p>
-        <p>5. <strong>True or False:</strong> You should share your password with your best friend.</p>
-      </div>
-    </div>
+    <ul>
+        <li class="mono-text">Strange sender email address</li>
+        <li class="mono-text">Spelling or grammar mistakes</li>
+        <li class="mono-text">"Urgent! Action Required!"</li>
+    </ul>
+    
+    <h3>🌐 Protect Your Space</h3>
+    <p>Keep accounts private, ask before downloading, and remember: <em>Once it's online, it's there forever.</em></p>
   </div>
 </div>
 
@@ -282,7 +215,7 @@ h2 { color: var(--blue); font-family: 'Nunito', sans-serif; border-bottom: 2px s
     <div class="video-container">
       <iframe data-src="https://www.youtube.com/embed/qtJNRxMRuPE" loading="lazy"></iframe>
     </div>
-    <div class="video-container">
+    <div class="video-container" style="margin-top: 20px;">
       <iframe data-src="https://www.youtube.com/embed/JkkTN0pQ_Ug" loading="lazy"></iframe>
     </div>
   </div>
@@ -291,97 +224,88 @@ h2 { color: var(--blue); font-family: 'Nunito', sans-serif; border-bottom: 2px s
 <div id="quiz" class="tab-content">
   <div class="card">
     <h2>Scenario Quiz</h2>
-    <p>Choose the best answer for each situation:</p>
-    
-    <div id="quiz-container">
-      <div class="quiz-item">
-        <p><strong>1. You receive an email saying you won a free iPhone, but you need to click a link to give your address. What do you do?</strong></p>
-        <div class="options">
-          <button onclick="checkAnswer(this, false)">Click it immediately!</button>
-          <button onclick="checkAnswer(this, true)">Delete it. It's likely a phishing scam.</button>
-        </div>
-      </div>
-      
-      <div class="quiz-item">
-        <p><strong>2. Your best friend asks for your game password so they can help you level up. What do you do?</strong></p>
-        <div class="options">
-          <button onclick="checkAnswer(this, true)">Refuse politely. Never share passwords.</button>
-          <button onclick="checkAnswer(this, false)">Give it to them; you trust them.</button>
-        </div>
-      </div>
-
-      <div class="quiz-item">
-        <p><strong>3. You see someone being mean to your classmate in a group chat. What is the best action?</strong></p>
-        <div class="options">
-          <button onclick="checkAnswer(this, false)">Join in so you don't get bullied too.</button>
-          <button onclick="checkAnswer(this, true)">Don't join in, save a screenshot, and tell an adult.</button>
-        </div>
-      </div>
-
-      <div class="quiz-item">
-        <p><strong>4. A stranger in an online game asks what school you go to. What do you say?</strong></p>
-        <div class="options">
-          <button onclick="checkAnswer(this, true)">Don't tell them. That's private information.</button>
-          <button onclick="checkAnswer(this, false)">Tell them the name but not the address.</button>
-        </div>
-      </div>
-
-      <div class="quiz-item">
-        <p><strong>5. You want to download a "free" version of a popular game from a random website. What should you do?</strong></p>
-        <div class="options">
-          <button onclick="checkAnswer(this, false)">Download it; it saves money!</button>
-          <button onclick="checkAnswer(this, true)">Stop. It could contain a virus or malware.</button>
-        </div>
+    <div class="quiz-item">
+      <p><strong>1. An email says you won a free game, but asks for your login. What do you do?</strong></p>
+      <div class="options">
+        <button onclick="check(this, false)">Click the link</button>
+        <button onclick="check(this, true)">Delete the email; it's phishing</button>
       </div>
     </div>
+    <div class="quiz-item">
+      <p><strong>2. Is "password123" a strong password?</strong></p>
+      <div class="options">
+        <button onclick="check(this, false)">Yes, it has numbers</button>
+        <button onclick="check(this, true)">No, it is too easy to guess</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <p><strong>3. Someone asks for your school name in a game chat. Do you:</strong></p>
+      <div class="options">
+        <button onclick="check(this, true)">Keep it private</button>
+        <button onclick="check(this, false)">Tell them so you can meet up</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+        <p><strong>4. A popup says your computer has 50 viruses. Click to fix!</strong></p>
+        <div class="options">
+          <button onclick="check(this, false)">Click "Fix Now"</button>
+          <button onclick="check(this, true)">Close the tab; it's a scam</button>
+        </div>
+      </div>
+      <div class="quiz-item">
+        <p><strong>5. Your friend wants to share your account to help you level up.</strong></p>
+        <div class="options">
+          <button onclick="check(this, true)">Refuse; never share passwords</button>
+          <button onclick="check(this, false)">Share it; they are my best friend</button>
+        </div>
+      </div>
   </div>
 </div>
 
 <div id="flow" class="tab-content">
   <div class="card">
-    <h2>What to do if you are Bullied Online</h2>
+    <h2>Cyberbullying Response Flow</h2>
     <div class="flow-container">
-      <div class="flow-box">🚫 1. STOP: Do not reply to the bully.</div>
-      <div class="flow-arrow">⬇</div>
-      <div class="flow-box">📸 2. SAVE: Take a screenshot for evidence.</div>
-      <div class="flow-arrow">⬇</div>
-      <div class="flow-box">🔒 3. BLOCK: Use the block feature immediately.</div>
-      <div class="flow-arrow">⬇</div>
-      <div class="flow-box" style="border-color: var(--green); background: #f0fdf4;">🗣️ 4. TELL: Talk to a parent or teacher.</div>
+      <div class="flow-box">🛑 1. STOP: Don't reply.</div>
+      <div class="flow-arrow">⬇️</div>
+      <div class="flow-box">📸 2. SAVE: Screenshot the evidence.</div>
+      <div class="flow-arrow">⬇️</div>
+      <div class="flow-box">🔒 3. BLOCK: Block the user immediately.</div>
+      <div class="flow-arrow">⬇️</div>
+      <div class="flow-box" style="border-color: var(--green); background: #f0fdf4;">🗣️ 4. TELL: Inform a trusted adult.</div>
     </div>
   </div>
 </div>
 
 <div id="poster" class="tab-content">
   <div class="card">
-    <h2>Internet Safety Poster</h2>
     <div id="printable-poster" class="poster-preview">
-      <h1 style="color: var(--blue);">🖐️ THE 5 RULES OF SAFETY</h1>
-      <li class="poster-rule">1. PROTECT your personal info.</li>
-      <li class="poster-rule">2. CREATE strong, secret passwords.</li>
-      <li class="poster-rule">3. RESPECT others in every chat.</li>
-      <li class="poster-rule">4. THINK before you click or post.</li>
-      <li class="poster-rule">5. ASK an adult if you feel unsure.</li>
+      <h1 style="color: var(--blue); margin-top: 0;">🖐️ 5 RULES OF SAFETY</h1>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">1. PROTECT Personal Info</p>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">2. CREATE Strong Passwords</p>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">3. RESPECT Everyone Online</p>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">4. THINK Before You Click</p>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">5. ASK When You're Unsure</p>
     </div>
-    <center><button class="btn-print" onclick="window.print()">🖨️ Print My Safety Poster</button></center>
+    <div style="text-align: center; margin-top: 30px;">
+      <button class="btn-action" style="background: var(--green); color: white;" onclick="printDiv('printable-poster')">🖨️ Print Poster</button>
+    </div>
   </div>
 </div>
 
 <div id="references" class="tab-content">
   <div class="card">
     <h2>Sources & Video Links</h2>
-    <p>All educational materials are sourced from reputable cybersecurity educators:</p>
     <ul>
       <li>
-        <strong>Online Safety Basics:</strong> 
-        <a href="https://www.youtube.com/watch?v=qtJNRxMRuPE" target="_blank">https://www.youtube.com/watch?v=qtJNRxMRuPE</a>
-        <br><small>Source: GCFLearnFree.org - Cybersecurity Education Series</small>
+        <strong>Online Safety Basics:</strong><br>
+        <span class="ref-url">https://www.youtube.com/watch?v=qtJNRxMRuPE</span><br>
+        <small>Source: GCFLearnFree.org</small>
       </li>
-      <br>
-      <li>
-        <strong>Cyberbullying & Fake News:</strong> 
-        <a href="https://www.youtube.com/watch?v=JkkTN0pQ_Ug" target="_blank">https://www.youtube.com/watch?v=JkkTN0pQ_Ug</a>
-        <br><small>Source: Amaze.org - Digital Citizenship for Students</small>
+      <li style="margin-top: 20px;">
+        <strong>Cyberbullying & Fake News:</strong><br>
+        <span class="ref-url">https://www.youtube.com/watch?v=JkkTN0pQ_Ug</span><br>
+        <small>Source: Amaze.org</small>
       </li>
     </ul>
   </div>
@@ -389,43 +313,41 @@ h2 { color: var(--blue); font-family: 'Nunito', sans-serif; border-bottom: 2px s
 
 </main>
 
-<footer>
-  © 2026 Operation Safe Internet • For Educational Purposes
+<footer style="text-align: center; padding: 40px; color: var(--muted); font-size: 14px;">
+  © 2026 Operation Safe Internet • Educational Project
 </footer>
 
 <script>
 function openTab(evt, tabId) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tab-content");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].classList.remove("active");
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].classList.remove("active");
-  }
+  const contents = document.getElementsByClassName("tab-content");
+  for (let content of contents) content.classList.remove("active");
+  
+  const links = document.getElementsByClassName("tablinks");
+  for (let link of links) link.classList.remove("active");
+  
   document.getElementById(tabId).classList.add("active");
   evt.currentTarget.classList.add("active");
 
-  // Lazy load video src
   if (tabId === 'videos') {
-    const frames = document.querySelectorAll('iframe[data-src]');
-    frames.forEach(f => { if(!f.src) f.src = f.getAttribute('data-src'); });
+    const iframes = document.querySelectorAll('iframe[data-src]');
+    iframes.forEach(f => { if(!f.src) f.src = f.getAttribute('data-src'); });
   }
 }
 
-function checkAnswer(btn, isCorrect) {
-  const parent = btn.parentElement;
-  const buttons = parent.querySelectorAll('button');
-  buttons.forEach(b => b.disabled = true);
-  
-  if (isCorrect) {
-    btn.classList.add('correct');
-    btn.innerHTML += " ✅";
-  } else {
-    btn.classList.add('wrong');
-    btn.innerHTML += " ❌";
-  }
+function check(btn, correct) {
+  const siblings = btn.parentElement.querySelectorAll('button');
+  siblings.forEach(s => s.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  btn.innerHTML += correct ? ' ✅' : ' ❌';
+}
+
+function printDiv(divId) {
+  const content = document.getElementById(divId).innerHTML;
+  const original = document.body.innerHTML;
+  document.body.innerHTML = `<div style="padding:40px; font-family:'Mona Sans',sans-serif;">${content}</div>`;
+  window.print();
+  document.body.innerHTML = original;
+  window.location.reload(); 
 }
 </script>
 
