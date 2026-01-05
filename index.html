@@ -55,6 +55,7 @@ header h1 {
   font-size: 40px;
   color: var(--yellow);
   margin-bottom: 12px;
+  text-shadow: 0 0 10px #facc15, 0 0 20px #facc15;
 }
 header p {
   font-size: 20px;
@@ -77,14 +78,30 @@ header p {
   outline: none;
   cursor: pointer;
   padding: 12px 20px;
-  transition: 0.3s;
+  transition: 0.3s, box-shadow 1s ease-in-out;
   font-size: 16px;
   color: white;
   font-weight: 700;
   margin: 4px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,255,255,0.2);
+  animation: glowPulse 2.5s infinite alternate;
 }
-.tab button:hover { background: var(--teal); }
-.tab button.active { background: var(--green); }
+.tab button:hover { 
+  background: var(--teal); 
+  box-shadow: 0 0 12px rgba(0,255,255,0.6);
+}
+.tab button.active { 
+  background: var(--green); 
+  box-shadow: 0 0 15px rgba(21,128,61,0.7);
+}
+
+/* Keyframes for glowing pulse */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 6px rgba(0,255,255,0.2); }
+  50% { box-shadow: 0 0 12px rgba(0,255,255,0.4); }
+  100% { box-shadow: 0 0 6px rgba(0,255,255,0.2); }
+}
 
 /* Tab content */
 .tab-content { display: none; padding: 20px 0; position: relative; z-index: 1; }
@@ -164,6 +181,7 @@ h3 { color: var(--teal); }
 .quiz-option.correct { border-color: var(--green); background: rgba(21,128,61,0.1); }
 .quiz-option.wrong { border-color: #f59e0b; background: rgba(250,204,21,0.1); }
 
+/* Buttons with glow */
 button {
   background: var(--blue);
   color: #ffffff;
@@ -174,9 +192,12 @@ button {
   cursor: pointer;
   font-weight: 700;
   margin-top: 8px;
+  box-shadow: 0 0 8px rgba(0,255,255,0.2);
+  animation: glowPulse 2.5s infinite alternate;
 }
-button:hover { background: #1e3a8a; }
+button:hover { box-shadow: 0 0 12px rgba(0,255,255,0.6); }
 
+/* About Me photo */
 .about-photo {
   max-width: 200px;
   border-radius: 12px;
@@ -184,6 +205,7 @@ button:hover { background: #1e3a8a; }
   margin: auto;
 }
 
+/* Footer */
 footer {
   text-align: center;
   font-size: 14px;
@@ -237,7 +259,7 @@ footer {
 </div>
 
 <main>
-<!-- All tab content goes here (same as before), including enhanced printable poster -->
+  <!-- All tab content goes here, including enhanced printable poster -->
 </main>
 
 <footer>
@@ -308,7 +330,7 @@ function printPoster() {
   const posterContent = document.getElementById('posterPreview').innerHTML;
   const printWindow = window.open('', '', 'height=800,width=800');
   printWindow.document.write('<html><head><title>Print Poster</title><style>');
-  printWindow.document.write('body { font-family: Nunito, sans-serif; text-align:center; padding:40px; }');
+  printWindow.document.write('body { font-family: Nunito, sans-serif; text-align:center; padding:40px; background:#0f172a; color:#f8fafc;}');
   printWindow.document.write('#posterPreview { border:4px solid #0f766e; padding:30px; border-radius:16px; background:linear-gradient(135deg, #e0f7fa, #ffffff); }');
   printWindow.document.write('h3 { color:#1e40af; font-size:32px; margin-bottom:24px; }');
   printWindow.document.write('ol { font-size:22px; line-height:2.2; text-align:left; display:inline-block; padding-left:40px; }');
