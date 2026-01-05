@@ -167,6 +167,7 @@ footer {
 <div class="tab">
   <button class="tablinks active" onclick="openTab(event,'intro')">Introduction</button>
   <button class="tablinks" onclick="openTab(event,'videos')">Videos</button>
+  <button class="tablinks" onclick="openTab(event,'cybersecurity')">Cybersecurity</button>
   <button class="tablinks" onclick="openTab(event,'quiz')">Scenario Quiz</button>
   <button class="tablinks" onclick="openTab(event,'flow')">Cyberbullying Flow</button>
   <button class="tablinks" onclick="openTab(event,'poster')">Poster</button>
@@ -222,6 +223,66 @@ footer {
     <li>Fake news spreads false information</li>
     <li>Think before sharing</li>
   </ul>
+</div>
+
+<!-- Cybersecurity Tab -->
+<div id="cybersecurity" class="tab-content card">
+  <h2>What Is Cybersecurity?</h2>
+  <p>Cybersecurity means protecting computers, phones, and information from dangers online.</p>
+  <h3>Why it matters:</h3>
+  <ul>
+    <li>Hackers might try to steal information</li>
+    <li>Scams can trick people</li>
+    <li>Some websites are unsafe</li>
+  </ul>
+  <p><strong>Goal:</strong> Learn to become a Cyber Hero who stays safe online!</p>
+
+  <hr>
+
+  <h2>Create Strong Passwords</h2>
+  <p>A strong password is like a powerful shield.</p>
+  <h3>Tips:</h3>
+  <ul>
+    <li>Use 8–12 characters</li>
+    <li>Mix letters, numbers, symbols</li>
+    <li>Never use your name, birthday, or “123456”</li>
+    <li>Don’t share passwords with friends</li>
+  </ul>
+  <p><strong>Example Strong Password:</strong> Tiger!9Moon#</p>
+  <p><strong>Activity:</strong> Students invent two strong passwords (not personal).</p>
+
+  <hr>
+
+  <h2>Spot the Phish!</h2>
+  <p>Phishing = fake messages trying to trick you.</p>
+  <h3>Red Flags:</h3>
+  <ul>
+    <li>Strange email address</li>
+    <li>Spelling mistakes</li>
+    <li>“Urgent! Click now!”</li>
+    <li>Offers that are too good to be true</li>
+  </ul>
+  <p><strong>Mini-Activity:</strong> Show two sample emails—students choose which one is fake.</p>
+
+  <hr>
+
+  <h2>Protect Your Online Space</h2>
+  <h3>To stay safe:</h3>
+  <ul>
+    <li>Keep accounts private</li>
+    <li>Ask before downloading apps</li>
+    <li>Don’t talk to strangers online</li>
+    <li>Use antivirus software</li>
+    <li>Think before posting</li>
+  </ul>
+  <p><strong>Remember:</strong> Once something is on the internet, it can stay there forever.</p>
+
+  <hr>
+
+  <h2>Quiz Time!</h2>
+  <div id="cyberQuizArea"></div>
+  <button onclick="gradeCyberQuiz()">Submit Answers</button>
+  <span id="cyberScore" style="margin-left:12px;font-weight:700"></span>
 </div>
 
 <!-- Scenario Quiz Tab -->
@@ -294,14 +355,14 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
-// Quiz Data
+// Scenario Quiz Data
 const quizData = [
   { q: 'Someone asks for your password. What do you do?', options: ['Give it','Say no and tell an adult','Ignore it'], a:1 },
   { q: 'You see a mean comment online. What do you do?', options: ['Reply','Save & Report','Share with friends'], a:1 },
   { q: 'You receive a suspicious link. Action?', options: ['Click it','Ask adult first','Forward to friends'], a:1 }
 ];
 
-// Build Quiz
+// Build Scenario Quiz
 function buildQuiz(){
   const area = document.getElementById('quizArea');
   area.innerHTML='';
@@ -321,12 +382,11 @@ function buildQuiz(){
 }
 buildQuiz();
 
-// Grade Quiz
+// Grade Scenario Quiz
 function gradeQuiz(){
   let score=0;
   quizData.forEach((item, idx)=>{
     const selected = document.querySelector(`input[name=q${idx}]:checked`);
-    const labels = document.getElementsByName(`q${idx}`);
     const optionLabels = Array.from(document.querySelectorAll('#quizArea .quiz-question')[idx].querySelectorAll('.quiz-option'));
     optionLabels.forEach((lab,i)=>{
       lab.classList.remove('correct','wrong');
@@ -339,15 +399,29 @@ function gradeQuiz(){
   document.getElementById('score').textContent=`Score: ${score} / ${quizData.length}`;
 }
 
-// Click whole label to select
-document.addEventListener('click', e=>{
-  if(e.target.closest('.quiz-option')){
-    const lab=e.target.closest('.quiz-option');
-    const radio=lab.querySelector('input[type=radio]');
-    if(radio) radio.checked=true;
-  }
-});
-</script>
+// Cybersecurity Quiz Data
+const cyberQuizData = [
+  { q: 'What is cybersecurity?', options: ['Protecting online data','Playing video games','Sharing passwords'], a:0 },
+  { q: 'Is “password123” a good password?', options: ['Yes','No'], a:1 },
+  { q: 'Name one sign of a phishing scam.', options: ['Strange email address','Friendly message','Regular newsletter'], a:0 },
+  { q: 'Why should you keep accounts private?', options: ['To protect your information','To annoy friends','To make it public'], a:0 },
+  { q: 'True or False: You should share your password with your best friend.', options: ['True','False'], a:1 }
+];
 
-</body>
-</html>
+// Build Cybersecurity Quiz
+function buildCyberQuiz(){
+  const area = document.getElementById('cyberQuizArea');
+  area.innerHTML='';
+  cyberQuizData.forEach((item, idx)=>{
+    const qDiv = document.createElement('div');
+    qDiv.className='quiz-question';
+    const h = document.createElement('strong'); h.textContent='Question '+(idx+1)+': '; qDiv.appendChild(h);
+    const p = document.createElement('span'); p.textContent=item.q; qDiv.appendChild(p);
+    item.options.forEach((opt,i)=>{
+      const label = document.createElement('label');
+      label.className='quiz-option';
+      label.innerHTML=`<input type="radio" name="cq${idx}" value="${i}" style="margin-right:6px"> ${opt}`;
+      qDiv.appendChild(label);
+    });
+    area.appendChild(qDiv);
+ 
