@@ -424,4 +424,36 @@ function buildCyberQuiz(){
       qDiv.appendChild(label);
     });
     area.appendChild(qDiv);
- 
+  });
+}
+buildCyberQuiz();
+
+// Grade Cybersecurity Quiz
+function gradeCyberQuiz(){
+  let score=0;
+  cyberQuizData.forEach((item, idx)=>{
+    const selected = document.querySelector(`input[name=cq${idx}]:checked`);
+    const optionLabels = Array.from(document.querySelectorAll('#cyberQuizArea .quiz-question')[idx].querySelectorAll('.quiz-option'));
+    optionLabels.forEach((lab,i)=>{
+      lab.classList.remove('correct','wrong');
+      const input = lab.querySelector('input');
+      if(i===item.a){ lab.classList.add('correct'); }
+      if(input.checked && i!==item.a){ lab.classList.add('wrong'); }
+    });
+    if(selected && Number(selected.value)===item.a) score++;
+  });
+  document.getElementById('cyberScore').textContent=`Score: ${score} / ${cyberQuizData.length}`;
+}
+
+// Click whole label to select for both quizzes
+document.addEventListener('click', e=>{
+  if(e.target.closest('.quiz-option')){
+    const lab=e.target.closest('.quiz-option');
+    const radio=lab.querySelector('input[type=radio]');
+    if(radio) radio.checked=true;
+  }
+});
+</script>
+
+</body>
+</html>
