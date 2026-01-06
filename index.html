@@ -21,7 +21,7 @@
   --yellow: #facc15;
   --green: #15803d;
   --red: #b91c1c;
-  --bg: #f8fafc;
+  --bg: #add8e6; /* light gray */
   --card: #ffffff;
   --text: #0f172a;
   --muted: #475569;
@@ -40,38 +40,25 @@ body {
   color: var(--text);
   font-size: 16px;
   line-height: 1.6;
+  position: relative;
 }
 
+/* Light gray overlay on top of background image */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(200, 200, 200, 0.5); /* subtle gray overlay for faded effect */
+  background: rgba(200, 200, 200, 0.7); /* light gray overlay */
   z-index: -1;
 }
 
 h1, h2, h3 { font-weight: 800; font-family: var(--font-main); }
 header { text-align: center; padding: 40px 20px; }
-
 header h1 {
   font-size: 48px;
   margin-bottom: 10px;
-  color: var(--blue); /* rich loyal blue */
+  color: #0b3d91; /* deep indigo, professional and tech-forward */
 }
-
-header h3 {
-  font-size: 1.2rem;
-  color: var(--muted);
-  font-weight: 500;
-  margin: 5px 0 0 0;
-}
-
-header p {
-  font-size: 1rem;
-  color: var(--muted);
-  margin-top: 10px;
-}
-
 .tab { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 15px; }
 .tab button {
   background: white; border: 1px solid #cbd5e1; padding: 12px 22px;
@@ -121,63 +108,22 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
 
 .ref-url { font-family: var(--font-mono); font-size: 13px; color: var(--blue); word-break: break-all; }
 
-.video-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.video-container iframe {
-  width: 80%;
-  max-width: 720px;
-  aspect-ratio: 16/9;
-  border: none;
-  border-radius: 12px;
-}
-
 @media print {
   .tab, .btn-action, footer { display: none !important; }
-  body { background: white !important; }
+  body { background: #add8e6 !important; }
   .card { box-shadow: none !important; border: none !important; }
 }
-</
-<style>
-/* Gray neon glow without flicker */
-.neon-title {
-  color: #cccccc; /* gray */
-  font-size: 48px;
-  font-weight: 800;
-  margin-bottom: 10px;
-  text-shadow:
-    0 0 3px #cccccc,
-    0 0 6px #cccccc,
-    0 0 10px #999999,
-    0 0 20px #999999;
-}
-
-.neon-subtitle {
-  color: #dddddd; /* lighter gray */
-  font-size: 1.2rem;
-  margin: 5px 0 0 0;
-  font-weight: 500;
-  text-shadow:
-    0 0 2px #dddddd,
-    0 0 4px #bbbbbb;
-}
-
-.neon-subtitle p {
-  font-size: 1rem;
-  margin-top: 10px;
-}
 </style>
+
 </head>
 <body>
+  
 <header style="text-align: center; padding: 40px 20px;">
-  <!-- Main title in black-->
+  <!-- Main title in rich loyal blue -->
   <h1 style="
     font-size: 48px;
     margin-bottom: 10px;
-    color: var(--black);
+    color: var(--blue);
     font-weight: 800;
   ">
     🛡️ Operation Safe Internet
@@ -207,93 +153,6 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
   <button class="tablinks" onclick="openTab(event,'flow')">Cyberbullying Flow</button>
   <button class="tablinks" onclick="openTab(event,'poster')">Poster</button>
   <button class="tablinks" onclick="openTab(event,'references')">References</button>
-</nav>
-
-<style>
-/* Metallic silver base with subtle shimmer animation */
-@keyframes shimmer {
-  0% { background-position: -200px 0; }
-  100% { background-position: 200px 0; }
-}
-
-.metallic-title {
-  color: #c0c0c0; /* base metallic silver */
-  font-size: 48px;
-  font-weight: 800;
-  margin-bottom: 10px;
-  text-shadow:
-    0 0 2px #d0d0d0,
-    0 0 4px #b8b8b8,
-    0 0 8px #a0a0a0,
-    0 0 12px #909090,
-    0 0 20px rgba(192,192,192,0.4); /* soft metallic glow */
-  
-  /* Shimmer overlay */
-  background: linear-gradient(
-    90deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.4) 50%,
-    rgba(255,255,255,0) 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s infinite linear;
-}
-
-.metallic-subtitle {
-  color: #dcdcdc; /* lighter metallic silver */
-  font-size: 1.2rem;
-  margin: 5px 0 0 0;
-  font-weight: 500;
-  text-shadow:
-    0 0 1px #e0e0e0,
-    0 0 2px #c0c0c0,
-    0 0 4px #b0b0b0,
-    0 0 6px rgba(192,192,192,0.3);
-
-  background: linear-gradient(
-    90deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.3) 50%,
-    rgba(255,255,255,0) 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 4s infinite linear;
-}
-
-.metallic-subtitle p {
-  font-size: 1rem;
-  margin-top: 10px;
-  text-shadow:
-    0 0 1px #e0e0e0,
-    0 0 2px #c0c0c0,
-    0 0 4px rgba(192,192,192,0.3);
-
-  background: linear-gradient(
-    90deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.25) 50%,
-    rgba(255,255,255,0) 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 4.5s infinite linear;
-}
-</style
-
-<nav class="tab">
-  <button class="tablinks active" onclick="openTab(event,'intro')">Introduction</button>
-  <button class="tablinks" onclick="openTab(event,'concepts')">Key Concepts</button>
-  <button class="tablinks" onclick="openTab(event,'videos')">Videos</button>
-  <button class="tablinks" onclick="openTab(event,'quiz')">Scenario Quiz</button>
-  <button class="tablinks" onclick="openTab(event,'flow')">Cyberbullying Flow</button>
-  <button class="tablinks" onclick="openTab(event,'poster')">Poster</button>
-  <button class="tablinks" onclick="openTab(event,'references')">References</button>
-  <button class="tablinks" onclick="openTab(event,'about')">About Me</button>
 </nav>
 
 <main>
