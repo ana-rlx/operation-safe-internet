@@ -169,9 +169,46 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
   <div class="card" id="intro-content">
     <h2>Activity Overview</h2>
     <p>This activity introduces basic cybersecurity concepts and safe online behavior. Through guided explanations, real-life examples, and interactive exercises, students learn how to identify common online threats such as phishing, weak passwords, and unsafe websites.</p>
-    <!-- rest of introduction content unchanged -->
+    
+    <h3>🎯 Learning Objectives</h3>
+    <ul>
+      <li>Raise awareness of basic cybersecurity and online safety.</li>
+      <li>Recognize common digital threats like phishing and insecure passwords.</li>
+      <li>Encourage responsible use of digital devices.</li>
+      <li>Develop critical thinking when evaluating online content.</li>
+    </ul>
+
+    <h3>🛠️ Methodology & Preparation</h3>
+    <p>Content was adapted to the students' level using a public access URL shared in the MOOC Virtual Classroom. Students explore digital modules, discuss safe vs. unsafe behaviors, and complete reflection tasks.</p>
+
+    <h3>⏱️ Timing for the Lesson</h3>
+    <p>The lesson is carefully paced to allow students to engage with each concept meaningfully. Approximately 60–75 minutes provides enough time to introduce cybersecurity, explore examples, conduct activities, and reflect on learning. Allocating time for discussion ensures students truly internalize the ideas.</p>
+
+    <h3>👩‍🏫 Teacher’s Role</h3>
+    <p>The teacher serves as both facilitator and guide, creating a structured environment where learning objectives are clear. Their support allows students to feel confident exploring new topics, linking abstract concepts to everyday digital experiences.</p>
+
+    <h3>🗣️ My Role as a Language Assistant</h3>
+    <p>As a Language Assistant, I bridge the gap between language and content understanding. I clarify vocabulary, model pronunciation, guide students through examples, and encourage participation to make cybersecurity concepts accessible and relatable.</p>
+
+    <h3>🤝 Complementary Roles</h3>
+    <p>Our collaboration is grounded in mutual support. While the teacher focuses on curriculum and classroom management, I provide language scaffolding and interactive guidance. Together, we create a learning environment that reinforces both content and language skills.</p>
+
+    <h3>🌈 Catering to Different Learning Styles</h3>
+    <p>The lesson addresses multiple learning styles: visual learners benefit from diagrams and videos; auditory learners engage through discussion; reading/writing learners work with text-based activities; kinesthetic learners gain from interactive scenarios. This blend encourages deeper understanding for every student.</p>
+
+    <h3>🧰 Tools & Resources</h3>
+    <div class="resource-grid">
+      <div class="grid-item">💻 Computer/Tablet</div>
+      <div class="grid-item">🌐 MOOC Platform</div>
+      <div class="grid-item">📽️ Classroom Projector</div>
+      <div class="grid-item">📊 Digital Quizzes</div>
+    </div>
+
+    <h3>🌟 Attention to Diversity</h3>
+    <p>Includes varied tasks for different skill levels. Visual examples support beginners, extension activities challenge advanced students, and peer support is encouraged throughout.</p>
   </div>
 </div>
+
 
 <!-- Key Concepts Tab -->
 <div id="concepts" class="tab-content">
@@ -232,8 +269,42 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
 <!-- Quiz Tab -->
 <div id="quiz" class="tab-content">
   <div class="card">
-    <h2>Scenario Quiz</h2>
-    <!-- quiz content unchanged -->
+   <h2>Scenario Quiz</h2>
+    <div class="quiz-item">
+      <p><strong>1. An email says you won a free game, but asks for your login. What do you do?</strong></p>
+      <div class="options">
+        <button onclick="check(this, false)">Click the link</button>
+        <button onclick="check(this, true)">Delete the email; it's phishing</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <p><strong>2. Is "password123" a strong password?</strong></p>
+      <div class="options">
+        <button onclick="check(this, false)">Yes, it has numbers</button>
+        <button onclick="check(this, true)">No, it is too easy to guess</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <p><strong>3. Someone asks for your school name in a game chat. Do you:</strong></p>
+      <div class="options">
+        <button onclick="check(this, true)">Keep it private</button>
+        <button onclick="check(this, false)">Tell them so you can meet up</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+        <p><strong>4. A popup says your computer has 50 viruses. Click to fix!</strong></p>
+        <div class="options">
+          <button onclick="check(this, false)">Click "Fix Now"</button>
+          <button onclick="check(this, true)">Close the tab; it's a scam</button>
+        </div>
+      </div>
+      <div class="quiz-item">
+        <p><strong>5. Your friend wants to share your account to help you level up.</strong></p>
+        <div class="options">
+          <button onclick="check(this, true)">Refuse; never share passwords</button>
+          <button onclick="check(this, false)">Share it; they are my best friend</button>
+        </div>
+      </div>
   </div>
 </div>
 
