@@ -251,14 +251,58 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
 <div id="videos" class="tab-content">
   <div class="card">
     <h2>Learning Videos</h2>
+
+    <!-- Video 1 -->
     <div class="video-container">
-      <iframe data-src="https://www.youtube.com/embed/qtJNRxMRuPE" allowfullscreen></iframe>
+      <iframe 
+        data-src="https://www.youtube.com/embed/qtJNRxMRuPE" 
+        allowfullscreen 
+        title="Cybersecurity Basics Video">
+      </iframe>
     </div>
+
+    <!-- Video 2 -->
     <div class="video-container">
-      <iframe data-src="https://www.youtube.com/embed/JkkTN0pQ_Ug" allowfullscreen></iframe>
+      <iframe 
+        data-src="https://www.youtube.com/embed/JkkTN0pQ_Ug" 
+        allowfullscreen 
+        title="Cyber Safety Scenario Video">
+      </iframe>
     </div>
+
   </div>
 </div>
+
+<style>
+/* Center and style the videos for a cyber-futuristic look */
+.video-container {
+  display: flex;                /* enables flexbox centering */
+  justify-content: center;      /* centers horizontally */
+  margin: 20px 0;               /* vertical spacing between videos */
+}
+
+.video-container iframe {
+  width: 100%;                  /* full width on smaller screens */
+  max-width: 560px;             /* limits width on larger screens */
+  height: 315px;                 /* standard 16:9 aspect ratio */
+  border-radius: 12px;          /* subtle rounded corners */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* futuristic soft shadow */
+  transition: transform 0.3s;   /* smooth hover effect */
+}
+
+/* Optional hover effect to give subtle cyber glow */
+.video-container iframe:hover {
+  transform: scale(1.02);       /* slight zoom */
+  box-shadow: 0 12px 30px rgba(0,255,200,0.25); /* faint neon glow */
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 600px) {
+  .video-container iframe {
+    height: 200px;
+  }
+}
+</style>
 
 <!-- Quiz Tab -->
 <div id="quiz" class="tab-content">
