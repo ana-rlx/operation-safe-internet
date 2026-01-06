@@ -140,14 +140,66 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
   body { background: white !important; }
   .card { box-shadow: none !important; border: none !important; }
 }
-</style>
+</
+<style>
+/* Neon flicker animation */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px #00ffe0,
+      0 0 10px #00ffe0,
+      0 0 20px #00ffe0,
+      0 0 40px #00ffd0,
+      0 0 60px #00ffd0;
+  }
+  20%, 24%, 55% {
+    opacity: 0.85;
+    text-shadow: 
+      0 0 2px #00ffe0,
+      0 0 4px #00ffe0,
+      0 0 6px #00ffd0;
+  }
+}
+
+.neon-title {
+  color: #00ffe0;
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-shadow:
+    0 0 5px #00ffe0,
+    0 0 10px #00ffe0,
+    0 0 20px #00ffe0,
+    0 0 40px #00ffd0,
+    0 0 60px #00ffd0;
+  animation: flicker 2s infinite;
+}
+
+.neon-subtitle {
+  color: #00ffd0;
+  font-size: 1.2rem;
+  margin: 5px 0 0 0;
+  font-weight: 500;
+  text-shadow:
+    0 0 3px #00ffd0,
+    0 0 6px #00ffd0,
+    0 0 10px #00ffd0;
+  animation: flicker 2.5s infinite alternate;
+}
+
+.neon-subtitle p {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+</style>>
+
 </head>
 <body>
-
-<header>
-  <h1 style="color: #000000;">🛡️ Operation Safe Internet</h1>
-  <h3 style="color: #000000;">Primary Grade 6</h3>
-  <p style="color: #000000;">Cybersecurity Awareness MOOC</p>
+<header style="text-align: center; padding: 40px 20px;">
+  <h1 class="neon-title">🛡️ Operation Safe Internet</h1>
+  <h3 class="neon-subtitle">Primary Grade 6</h3>
+  <p class="neon-subtitle">Cybersecurity Awareness MOOC</p>
 </header>
 
 <nav class="tab">
