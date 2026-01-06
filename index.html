@@ -21,7 +21,7 @@
   --yellow: #facc15;
   --green: #15803d;
   --red: #b91c1c;
-  --bg: #f8fafc;
+  --bg: #add8e6; /* light blue */
   --card: #ffffff;
   --text: #0f172a;
   --muted: #475569;
@@ -30,6 +30,7 @@
 }
 
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: var(--font-main);
@@ -39,13 +40,15 @@ body {
   color: var(--text);
   font-size: 16px;
   line-height: 1.6;
+  position: relative;
 }
 
+/* Light blue overlay on top of background image */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(173, 216, 230, 0.6); /* light blue overlay */
+  background: rgba(173, 216, 230, 0.6); /* light blue with 60% opacity */
   z-index: -1;
 }
 
@@ -104,10 +107,11 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
 
 @media print {
   .tab, .btn-action, footer { display: none !important; }
-  body { background: white !important; }
+  body { background: #add8e6 !important; }
   .card { box-shadow: none !important; border: none !important; }
 }
 </style>
+
 </head>
 <body>
 
