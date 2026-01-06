@@ -218,7 +218,109 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
   </div>
 </div>
 
-<!-- Other tabs (videos, quiz, flow, poster, references) remain exactly the same as your original code -->
+<div id="videos" class="tab-content">
+  <div class="card">
+    <h2>Learning Videos</h2>
+    <div class="video-container">
+      <iframe data-src="https://www.youtube.com/embed/qtJNRxMRuPE" loading="lazy"></iframe>
+    </div>
+    <div class="video-container" style="margin-top: 20px;">
+      <iframe data-src="https://www.youtube.com/embed/JkkTN0pQ_Ug" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
+<div id="quiz" class="tab-content">
+  <div class="card">
+    <h2>Scenario Quiz</h2>
+    <div class="quiz-item">
+      <p><strong>1. An email says you won a free game, but asks for your login. What do you do?</strong></p>
+      <div class="options">
+        <button onclick="check(this, false)">Click the link</button>
+        <button onclick="check(this, true)">Delete the email; it's phishing</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <p><strong>2. Is "password123" a strong password?</strong></p>
+      <div class="options">
+        <button onclick="check(this, false)">Yes, it has numbers</button>
+        <button onclick="check(this, true)">No, it is too easy to guess</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+      <p><strong>3. Someone asks for your school name in a game chat. Do you:</strong></p>
+      <div class="options">
+        <button onclick="check(this, true)">Keep it private</button>
+        <button onclick="check(this, false)">Tell them so you can meet up</button>
+      </div>
+    </div>
+    <div class="quiz-item">
+        <p><strong>4. A popup says your computer has 50 viruses. Click to fix!</strong></p>
+        <div class="options">
+          <button onclick="check(this, false)">Click "Fix Now"</button>
+          <button onclick="check(this, true)">Close the tab; it's a scam</button>
+        </div>
+      </div>
+      <div class="quiz-item">
+        <p><strong>5. Your friend wants to share your account to help you level up.</strong></p>
+        <div class="options">
+          <button onclick="check(this, true)">Refuse; never share passwords</button>
+          <button onclick="check(this, false)">Share it; they are my best friend</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div id="flow" class="tab-content">
+  <div class="card">
+    <h2>Cyberbullying Response Flow</h2>
+    <div class="flow-container">
+      <div class="flow-box">🛑 1. STOP: Don't reply.</div>
+      <div class="flow-arrow">⬇️</div>
+      <div class="flow-box">📸 2. SAVE: Screenshot the evidence.</div>
+      <div class="flow-arrow">⬇️</div>
+      <div class="flow-box">🔒 3. BLOCK: Block the user immediately.</div>
+      <div class="flow-arrow">⬇️</div>
+      <div class="flow-box" style="border-color: var(--green); background: #f0fdf4;">🗣️ 4. TELL: Inform a trusted adult.</div>
+    </div>
+  </div>
+</div>
+
+<div id="poster" class="tab-content">
+  <div class="card">
+    <div id="printable-poster" class="poster-preview">
+      <h1 style="color: var(--blue); margin-top: 0;">🖐️ 5 RULES OF SAFETY</h1>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">1. PROTECT Personal Info</p>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">2. CREATE Strong Passwords</p>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">3. RESPECT Everyone Online</p>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">4. THINK Before You Click</p>
+      <p class="mono-text" style="font-size: 1.4rem; color: var(--teal);">5. ASK When You're Unsure</p>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+      <button class="btn-action" style="background: var(--green); color: white;" onclick="printDiv('printable-poster')">🖨️ Print Poster</button>
+    </div>
+  </div>
+</div>
+
+<div id="references" class="tab-content">
+  <div class="card">
+    <h2>Sources & Video Links</h2>
+    <ul>
+      <li>
+        <strong>Online Safety Basics:</strong><br>
+        <span class="ref-url">https://www.youtube.com/watch?v=qtJNRxMRuPE</span><br>
+        <small>Source: GCFLearnFree.org</small>
+      </li>
+      <li style="margin-top: 20px;">
+        <strong>Cyberbullying & Fake News:</strong><br>
+        <span class="ref-url">https://www.youtube.com/watch?v=JkkTN0pQ_Ug</span><br>
+        <small>Source: Amaze.org</small>
+      </li>
+    </ul>
+  </div>
+</div>
+
+</main>
 
 <footer style="text-align: center; padding: 40px; color: var(--muted); font-size: 14px;">
   © 2026 Operation Safe Internet • Educational Project
