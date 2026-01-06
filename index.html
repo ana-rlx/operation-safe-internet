@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@github/mona-sans@1.0.1/dist/index.css">
 <style>
-/* Monaspace Neon Medium */
+/* Manually importing Monaspace Neon Medium from CDN */
 @font-face {
   font-family: 'Monaspace Neon';
   src: url('https://cdn.jsdelivr.net/gh/githubnext/monaspace@v1.000/fonts/webfonts/MonaspaceNeon-Medium.woff2') format('woff2');
@@ -25,7 +25,6 @@
   --card: #ffffff;
   --text: #0f172a;
   --muted: #475569;
-  
   --font-main: 'Mona Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'Monaspace Neon', monospace;
 }
@@ -69,7 +68,11 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
 
 .card { background: var(--card); padding: 35px; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.06); margin-top: 25px; border: 1px solid rgba(226, 232, 240, 0.8); }
 
-.mono-text, code, .password-example, .red-flag { font-family: var(--font-mono); font-weight: 500; color: var(--teal); }
+.mono-text, code, .password-example, .red-flag {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--teal);
+}
 
 .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
 .grid-item { background: #f1f5f9; padding: 12px; border-radius: 8px; font-size: 14px; }
@@ -86,9 +89,16 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
 .wrong { background: #fee2e2 !important; border-color: #b91c1c !important; color: #991b1b; }
 
 .flow-container { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.flow-box { background: white; border: 2.5px solid var(--teal); padding: 20px; border-radius: 18px; width: 100%; max-width: 450px; text-align: center; box-shadow: 5px 5px 0px var(--teal); }
+.flow-box {
+  background: white; border: 2.5px solid var(--teal); padding: 20px;
+  border-radius: 18px; width: 100%; max-width: 450px; text-align: center;
+  box-shadow: 5px 5px 0px var(--teal);
+}
 
-.poster-preview { background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); border: 5px dashed var(--blue); padding: 50px; border-radius: 30px; text-align: center; }
+.poster-preview {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  border: 5px dashed var(--blue); padding: 50px; border-radius: 30px; text-align: center;
+}
 
 .ref-url { font-family: var(--font-mono); font-size: 13px; color: var(--blue); word-break: break-all; }
 
@@ -136,6 +146,21 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
     <h3>🛠️ Methodology & Preparation</h3>
     <p>Content was adapted to the students' level using a public access URL shared in the MOOC Virtual Classroom. Students explore digital modules, discuss safe vs. unsafe behaviors, and complete reflection tasks.</p>
 
+    <h3>⏱️ Timing for the Lesson</h3>
+    <p>The lesson is carefully paced to allow students to engage with each concept meaningfully. Approximately 60–75 minutes provides enough time to introduce cybersecurity, explore examples, conduct activities, and reflect on learning. Allocating time for discussion ensures students truly internalize the ideas.</p>
+
+    <h3>👩‍🏫 Teacher’s Role</h3>
+    <p>The teacher serves as both facilitator and guide, creating a structured environment where learning objectives are clear. Their support allows students to feel confident exploring new topics, linking abstract concepts to everyday digital experiences.</p>
+
+    <h3>🗣️ My Role as a Language Assistant</h3>
+    <p>As a Language Assistant, I bridge the gap between language and content understanding. I clarify vocabulary, model pronunciation, guide students through examples, and encourage participation to make cybersecurity concepts accessible and relatable.</p>
+
+    <h3>🤝 Complementary Roles</h3>
+    <p>Our collaboration is grounded in mutual support. While the teacher focuses on curriculum and classroom management, I provide language scaffolding and interactive guidance. Together, we create a learning environment that reinforces both content and language skills.</p>
+
+    <h3>🌈 Catering to Different Learning Styles</h3>
+    <p>The lesson addresses multiple learning styles: visual learners benefit from diagrams and videos; auditory learners engage through discussion; reading/writing learners work with text-based activities; kinesthetic learners gain from interactive scenarios. This blend encourages deeper understanding for every student.</p>
+
     <h3>🧰 Tools & Resources</h3>
     <div class="resource-grid">
       <div class="grid-item">💻 Computer/Tablet</div>
@@ -144,14 +169,56 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
       <div class="grid-item">📊 Digital Quizzes</div>
     </div>
 
-    <h3>🌈 Attention to Diversity</h3>
-    <p>Includes varied tasks for different skill levels. Basic visual examples support beginners, while extension activities challenge advanced students. Peer support is encouraged throughout the lesson.</p>
+    <h3>🌟 Attention to Diversity</h3>
+    <p>Includes varied tasks for different skill levels. Visual examples support beginners, extension activities challenge advanced students, and peer support is encouraged throughout.</p>
   </div>
 </div>
 
-<!-- Concepts, Videos, Quiz, Flow, Poster, References remain exactly as in your previous code -->
+<!-- The rest of your tabs remain unchanged: concepts, videos, quiz, flow, poster, references -->
 
-</main>
+<div id="concepts" class="tab-content">
+  <div class="card">
+    <h2>Cybersecurity Essentials</h2>
+    <h3>🛡️ What is Cybersecurity?</h3>
+    <p>Protecting your computers, phones, and private information from dangers online.</p>
+    <p><strong>Why it matters:</strong> Hackers try to steal data, scams trick users, and some sites are dangerous.</p>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
+    <h3>🔑 Create Strong Passwords</h3>
+    <p>A strong password is your digital shield. Remember these tips:</p>
+    <ul>
+      <li>Use 8–12 characters.</li>
+      <li>Mix <span class="mono-text">LETTERS, numbers, and symbols!</span></li>
+      <li>Never use your name or "123456".</li>
+    </ul>
+    <div style="background: #1e293b; padding: 20px; border-radius: 12px; text-align: center; margin: 15px 0;">
+      <span style="color: #94a3b8; font-size: 14px; display: block;">SECURE EXAMPLE:</span>
+      <span class="password-example" style="color: #38bdf8; font-size: 1.5rem;">Tiger!9Moon#</span>
+    </div>
+
+    <h3>🎣 Spot the Phish!</h3>
+    <p>Phishing = Fake messages trying to trick you. <strong>Red Flags:</strong></p>
+    <figure style="text-align:center; margin: 20px 0;">
+      <a href="images/phishing-example.png" target="_blank" rel="noopener">
+        <img src="./images/phishing-example.png" alt="Annotated phishing email showing fake sender and suspicious link" style="max-width:100%; height:auto; border:2px solid #f00; border-radius:8px; cursor: zoom-in;">
+      </a>
+      <figcaption style="font-size:0.9rem; color:#555;">
+        Click the image to view it full size and spot the phishing red flags
+      </figcaption>
+    </figure>
+    <ul>
+      <li class="mono-text">Strange sender email address</li>
+      <li class="mono-text">Spelling or grammar mistakes</li>
+      <li class="mono-text">"Urgent! Action Required!" messages</li>
+    </ul>
+    
+    <h3>🌐 Protect Your Space</h3>
+    <p>Keep accounts private, ask before downloading, and remember: <em>Once it's online, it's there forever.</em></p>
+  </div>
+</div>
+
+<!-- Other tabs (videos, quiz, flow, poster, references) remain exactly the same as your original code -->
 
 <footer style="text-align: center; padding: 40px; color: var(--muted); font-size: 14px;">
   © 2026 Operation Safe Internet • Educational Project
