@@ -142,58 +142,34 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
 }
 </
 <style>
-/* Neon flicker animation */
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-    text-shadow:
-      0 0 5px #00ffe0,
-      0 0 10px #00ffe0,
-      0 0 20px #00ffe0,
-      0 0 40px #00ffd0,
-      0 0 60px #00ffd0;
-  }
-  20%, 24%, 55% {
-    opacity: 0.85;
-    text-shadow: 
-      0 0 2px #00ffe0,
-      0 0 4px #00ffe0,
-      0 0 6px #00ffd0;
-  }
-}
-
+/* Gray neon glow without flicker */
 .neon-title {
-  color: #00ffe0;
+  color: #cccccc; /* gray */
   font-size: 48px;
   font-weight: 800;
   margin-bottom: 10px;
   text-shadow:
-    0 0 5px #00ffe0,
-    0 0 10px #00ffe0,
-    0 0 20px #00ffe0,
-    0 0 40px #00ffd0,
-    0 0 60px #00ffd0;
-  animation: flicker 2s infinite;
+    0 0 3px #cccccc,
+    0 0 6px #cccccc,
+    0 0 10px #999999,
+    0 0 20px #999999;
 }
 
 .neon-subtitle {
-  color: #00ffd0;
+  color: #dddddd; /* lighter gray */
   font-size: 1.2rem;
   margin: 5px 0 0 0;
   font-weight: 500;
   text-shadow:
-    0 0 3px #00ffd0,
-    0 0 6px #00ffd0,
-    0 0 10px #00ffd0;
-  animation: flicker 2.5s infinite alternate;
+    0 0 2px #dddddd,
+    0 0 4px #bbbbbb;
 }
 
 .neon-subtitle p {
   font-size: 1rem;
   margin-top: 10px;
 }
-</style>>
-
+</style>
 </head>
 <body>
 <header style="text-align: center; padding: 40px 20px;">
@@ -231,7 +207,6 @@ main { max-width: 950px; margin: auto; padding: 0 20px 60px; }
   margin-top: 10px;
 }
 </style>
-
 
 <nav class="tab">
   <button class="tablinks active" onclick="openTab(event,'intro')">Introduction</button>
